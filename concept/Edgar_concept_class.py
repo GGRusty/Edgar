@@ -4,7 +4,37 @@ import numpy as np
 import datetime
 
 class EdgarConcept:
-    def __init__(self, ticker, concept, headers):
+    """
+    This class fetches and processes financial concept data from the EDGAR database for a given company.
+
+    Args:
+        ticker (str): The ticker symbol of the company.
+        concept (str): The financial concept to fetch data for.
+        headers (dict): Request headers to use when fetching data.
+
+    Attributes:
+        ticker (str): The ticker symbol of the company.
+        concept (str): The financial concept to fetch data for.
+        headers (dict): Request headers to use when fetching data.
+        concept_df (DataFrame): Raw concept data fetched from the EDGAR database.
+        unit_df (DataFrame): Unit data extracted from the concept data.
+        annual_data (DataFrame): Processed annual data.
+        quarterly_data (DataFrame): Processed quarterly data.    
+            
+    """
+    def __init__(self, ticker: str, concept: str, headers: dict):
+        """
+        Initialize a new EdgarConcept object.
+
+        Args:
+            ticker (str): The ticker symbol of the company.
+            concept (str): The financial concept to fetch data for.
+            headers (dict): Request headers to use when fetching data.
+
+        Raises:
+            ValueError: If ticker or concept is not a string.
+            ValueError: If headers is not a dict.
+        """
         self.ticker = ticker
         self.concept = concept
         self.headers = headers
@@ -13,13 +43,18 @@ class EdgarConcept:
         self.annual_data, self.quarterly_data = self.process_data()
 
     @staticmethod
-    def get_cik(ticker):
+    def get_cik(ticker: str) -> str:
         """
         Get the CIK for a given ticker.
+
         Args:
             ticker (str): The ticker symbol of the company.
+
         Returns:
             str: The CIK for the company.
+
+        Raises:
+            ValueError: If ticker is not a string.
         """
         ticker = ticker.upper()
         headers = {"User-Agent": "russ@sunriseanalysis.com"}
@@ -34,14 +69,34 @@ class EdgarConcept:
         cik = cik_df[cik_df["ticker"] == ticker]["cik_str"].values[0]
         return cik
 
-    def get_concept_data(self):
+    def get_concept_data(self) -> pd.DataFrame:
+        """
+        Fetch concept data from the EDGAR database for the current object.
+
+        Returns:
+            DataFrame: The concept data.
+
+        Raises:
+            Exception: If an error occurs while fetching the concept data.
+        """
         cik = self.get_cik(self.ticker)
-        # Fetches the concept data and converts it into a DataFrame
         concept_url = f"https://data.sec.gov/api/xbrl/companyconcept/CIK{cik}/us-gaap/{self.concept}.json"
         concept_df = pd.DataFrame.from_dict(requests.get(concept_url, headers=self.headers).json())
         return concept_df
 
-    def get_unit_data(self):
+    def get_unit_data(self) -> pd.DataFrame:
+        """
+        Process the concept data to extract the unit data.
+
+        Returns:
+            DataFrame: The unit data, with the following columns:
+
+            start: The start date of the period.
+            end: The end date of the period.
+            filed: The date the filing was made.
+            time_delta: The difference between the end and start dates.
+            value(millions): The value of the unit, in millions.
+        """
         df = pd.DataFrame.from_dict(self.concept_df["units"]["USD"])
         for col in ["start", "end", "filed"]:
             df[col] = pd.to_datetime(df[col])
@@ -51,7 +106,21 @@ class EdgarConcept:
         return df
 
     @staticmethod
-    def map_to_quarter(end_date, end_month):
+    def map_to_quarter(end_date, end_month: int) -> int:
+        """
+        Converts a date to the corresponding financial quarter.
+
+        Args:
+            end_date (datetime): The date to convert.
+            end_month (int): The end month of the quarter.
+
+        Returns:
+            int: The corresponding financial quarter.
+
+        Raises:
+            ValueError: If end_date is not a datetime object.
+            ValueError: If end_month is not an integer.
+        """
         month_diff = (end_date.month - end_month + 9) % 12
         if 0 <= month_diff < 3:
             return 1
@@ -61,12 +130,21 @@ class EdgarConcept:
             return 3
         else:  # 9, 10, 11
             return 4
-        
+       
     def fill_quarter(self, row, quarterly_data):
+        """
+        Fills in missing quarters for the provided row.
+
+        Args:
+            row (pd.Series): The row to fill in.
+            quarterly_data (pd.DataFrame): The DataFrame with the quarterly data.
+
+        Returns:
+            pd.Series: The row with missing quarters filled in.
+        """
         if pd.isnull(row["quarter"]):
             previous_index = row.name - 1
             next_index = row.name + 1 if row.name < len(quarterly_data) - 1 else row.name
-
             if previous_index >= 0 and not pd.isnull(quarterly_data.loc[previous_index, "quarter"]):
                 previous_quarter = quarterly_data.loc[previous_index, "quarter"]
                 row["quarter"] = 1 if previous_quarter == 4 else previous_quarter + 1
@@ -76,6 +154,20 @@ class EdgarConcept:
         return row
 
     def find_fiscal_year(self, date, annual_data):
+        """
+        Finds the fiscal year for the provided date and annual DataFrame.
+
+        Args:
+            date (datetime): The date to find the fiscal year for.
+            annual_data (pd.DataFrame): The annual DataFrame with the fiscal year information.
+
+        Returns:
+            str: The fiscal year.
+
+        Raises:
+            ValueError: If date is not a datetime object.
+            ValueError: If annual_data is not a pandas DataFrame.
+        """
         for idx, row in annual_data.iterrows():
             if row["start"] <= date <= row["end"]:
                 return row["fiscal_year"]
@@ -87,6 +179,19 @@ class EdgarConcept:
         return None
     
     def fill_missing_quarters(self, quarterly_data, annual_data):
+        """
+        Fills in missing quarters for the provided DataFrame.
+
+        Args:
+            quarterly_data (pd.DataFrame): The DataFrame to fill in.
+            annual_data (pd.DataFrame): The annual DataFrame with the full year values.
+
+        Returns:
+            pd.DataFrame: The DataFrame with missing quarters filled in.
+
+        Raises:
+            ValueError: If quarterly_data or annual_data is not a pandas DataFrame.
+        """
         for idx, row in quarterly_data.iterrows():
             if pd.isnull(row["value(millions)"]):
                 other_quarters = quarterly_data[
@@ -101,16 +206,27 @@ class EdgarConcept:
         return quarterly_data
     
     def process_data(self):
+        """
+        Processes the fetched concept data to extract annual and quarterly data.
+
+        Returns:
+            tuple: The annual and quarterly data as two separate DataFrames.
+
+        """
+        # get the unit data
         df = self.unit_df
+        # extract the annual data
         annual_data = df[df["time_delta"] > pd.Timedelta(days=350)]
+        # drop the annual data from the unit data
         df = df.drop(annual_data.index)
+        # remove duplicates
         annual_data = annual_data.drop_duplicates(subset="value(millions)", keep="last")
         annual_data = annual_data.dropna(subset="frame")
         annual_data = annual_data.drop(
             columns=["time_delta", "filed", "form", "fy", "fp"]
         ).reset_index(drop=True)
-
         annual_data.rename(columns={"frame": "fiscal_year"}, inplace=True)
+        # extraacts the extra data
         extra_data = df[df["time_delta"] > pd.Timedelta(days=115)]
         df = df.drop(extra_data.index)
         extra_data.reset_index(drop=True, inplace=True)
@@ -118,10 +234,13 @@ class EdgarConcept:
         df = df.drop(columns=["time_delta", "filed", "form", "fy", "fp", "accn"])
         df = df.dropna(subset=["frame"])
         df = df.reset_index(drop=True)
-        end_month = annual_data.iloc[0]["end"].month 
+        # this gets the end month of the first annual period
+        end_month = annual_data.iloc[0]["end"].month
+        # this maps the end month to the quarter that it belongs to
         df["quarter"] = df["end"].apply(lambda x: self.map_to_quarter(x, end_month))
         start_year = int(df["frame"].min()[2:6])  # extract start year from the minimum frame
         end_year = int(df["frame"].max()[2:6])  # extract end year from the maximum frame
+        # create a list of all the frames for the quarterly data
         frames = [
             f"CY{year}Q{quarter}"
             for year in range(start_year, end_year + 1)
@@ -177,13 +296,20 @@ class EdgarConcept:
         quarterly_data = quarterly_data.reindex(columns=new_merged_order)
         return annual_data, quarterly_data
 
-    def get_data_point(self, year, quarter):
-        return self.quarterly_data.loc[(year, quarter)]
+    def get_data_point(self, year: int, quarter: int) -> pd.Series:
+        """
+        Gets the data point for the specified year and quarter.
 
-ticker = "AAPL"
-concept = "NetIncomeLoss"
-headers = {"User-Agent": "russ@sunriseanalysis.com"}
-    
-edgar_concept = EdgarConcept(ticker, concept, headers)
-print(edgar_concept.annual_data)
-print(edgar_concept.quarterly_data)
+        Args:
+            year (int): The year of the data point.
+            quarter (int): The quarter of the data point.
+
+        Returns:
+            pd.Series: The data point for the specified year and quarter.
+
+        Raises:
+            KeyError: If the specified year and quarter are not found in the quarterly data.
+        """
+        if quarter < 1 or quarter > 4:
+            raise ValueError("quarter must be between 1 and 4")
+        return self.quarterly_data.loc[(year, quarter)]

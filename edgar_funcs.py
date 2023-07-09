@@ -117,6 +117,24 @@ def get_10Q_accessionNumbers_for_ticker(ticker: str) -> pd.Series:
     return tenQ_accession_numbers
 
 
+def get_quarterly_and_annual_accn_series(ticker: str):  # this is goint to replace the two get 10k and 10q accession number functions above
+    """Gets a series of the accession numbers for the most recent 10-Q and 10-K filings
+    for the 4th quarter of the quarterly series we added the 10-K accession numbers
+    returns two series, one for the 10-Q and one for the 10-K"""
+    recent_df = get_company_filings_for_ticker(ticker)
+    # Convert 'recent' data to a DataFrame
+    filings_10Q = recent_df[recent_df['form'] == '10-Q']
+    filings_10K = recent_df[recent_df['form'] == '10-K']
+
+    # Create Series with report date as index and accession number as values
+    series_10Q = filings_10Q.set_index('reportDate')['accessionNumber']
+    series_10K = filings_10K.set_index('reportDate')['accessionNumber']
+
+    # For the quarterly series, add the annual one where the dates are missing
+    series_10Q = series_10Q.combine_first(series_10K)
+    return series_10Q, series_10K
+
+
 def get_specific_filing_using_accessionNumber(ticker: str, accessionNumber: str):
     cik = get_cik_for_ticker(ticker)
     headers = {"User-Agent": "russ@sunriseanalysis.com"}
@@ -126,18 +144,6 @@ def get_specific_filing_using_accessionNumber(ticker: str, accessionNumber: str)
 
 
 def get_facts_for_ticker(ticker: str) -> pd.DataFrame:
-    """
-    Get the facts for a given ticker.
-
-    Args:
-        ticker (str): The ticker symbol of the company.
-
-    Returns:
-        pd.DataFrame: The facts for the company.
-
-    Raises:
-        ValueError: If ticker is not a string.
-    """
     cik = get_cik_for_ticker(ticker)
     headers = {"User-Agent": "russ@sunriseanalysis.com"}
     url = f"https://data.sec.gov/api/xbrl/companyfacts/CIK{str(cik)}.json"
@@ -148,46 +154,57 @@ def get_facts_for_ticker(ticker: str) -> pd.DataFrame:
 
 def explore_facts_dict(data) -> pd.DataFrame:
     rows = []
-
     for account_key, account_values in data.items():
         for unit_key, unit_values in account_values.items():
             for item in unit_values:
                 row = {"account_key": account_key, "unit_key": unit_key}
                 row.update(item)
                 rows.append(row)
-
     df = pd.DataFrame(rows)
     return df
 
 
-def get_parsed_facts(ticker) -> pd.DataFrame:
-    cik = get_cik_for_ticker(ticker)
-    headers = {"User-Agent": "russ@sunriseanalysis.com"}
-    tenKs = get_10K_accessionNumbers_for_ticker(ticker)
-    tenQs = get_10Q_accessionNumbers_for_ticker(ticker)
-    combinced_10Ks_10Qs = pd.concat([tenKs, tenQs], join='outer')
+def split_and_process_facts(ticker: str):
+    tenQs, tenKs = get_quarterly_and_annual_accn_series(ticker)
     facts = get_facts_for_ticker(ticker).T
-    facts.index.name = 'fact'
-    facts = facts['units']
+    facts.index.name = "fact"
+    facts = facts["units"]
     facts_dict = facts.to_dict()
     facts_df = explore_facts_dict(facts_dict)
-    facts_df = facts_df[facts_df['accn'].isin(combinced_10Ks_10Qs)].dropna(subset=['frame'])
-    facts_df = facts_df.drop(['accn', 'start', 'fy', 'fp', 'frame', 'filed', 'form'], axis=1)
-    facts_df['fact__unit'] = facts_df['account_key'] + '__' + facts_df['unit_key']
-    facts_df = facts_df.drop(['account_key', 'unit_key'], axis=1)
-    pivot_df = facts_df.pivot_table(index='end', columns='fact__unit', values='val', aggfunc='first')
-    pivot_df.index = pd.to_datetime(pivot_df.index)
-    pivot_df_recent= pivot_df[pivot_df.index.isin(combinced_10Ks_10Qs.index)]
-    pivot_df_recent = pivot_df_recent.dropna(axis=1, how='all')
-    for col in pivot_df_recent.columns:
-        if '_USD' in col or '_shares' in col and pivot_df_recent[col].abs().max() > 1_000:
-            pivot_df_recent[col] = pivot_df_recent[col] / 1_000_000
-            pivot_df_recent.rename(columns={col: col + '(millions)'}, inplace=True)
-    pivot_df_recent.name = ticker
-    return pivot_df_recent
+    annual_df = facts_df[facts_df["accn"].isin(tenKs)]
+    quarterly_df = facts_df[facts_df["accn"].isin(tenQs)].dropna(subset=["frame"])
+    annual_df = annual_df.drop(["accn", "start", "fy", "fp", "frame", "filed", "form"], axis=1)
+    quarterly_df = quarterly_df.drop(["accn", "start", "fy", "fp", "frame", "filed", "form"], axis=1)
+    annual_df["fact__unit"] = annual_df["account_key"] + "__" + annual_df["unit_key"]
+    quarterly_df["fact__unit"] = (quarterly_df["account_key"] + "__" + quarterly_df["unit_key"])
+    annual_df = annual_df.drop(["account_key", "unit_key"], axis=1)
+    quarterly_df = quarterly_df.drop(["account_key", "unit_key"], axis=1)
+    annual_pivot = annual_df.pivot_table(index="end", columns="fact__unit", values="val", aggfunc="first")
+    quarterly_pivot = quarterly_df.pivot_table(index="end", columns="fact__unit", values="val", aggfunc="first")
+    annual_pivot.index = pd.to_datetime(annual_pivot.index)
+    quarterly_pivot.index = pd.to_datetime(quarterly_pivot.index)
+    annual_recent = annual_pivot[annual_pivot.index.isin(tenKs.index)]
+    quarterly_recent = quarterly_pivot[quarterly_pivot.index.isin(tenQs.index)]
+    annual_recent = annual_recent.dropna(axis=1, how="all")
+    quarterly_recent = quarterly_recent.dropna(axis=1, how="all")
+    annual_recent.name = "annual_DataFrame"
+    quarterly_recent.name = "quarterly_DataFrame"
+    ## the code below kinda complicates things, so I'm commenting it out for now its a little ahead of its time
+    ## it divides the dataframe by 1000000 but i can worry about readability after it works
+    # for col in annual_recent.columns:
+    #     if "_USD" in col or "_shares" in col and annual_recent[col].abs().max() > 1_000:
+    #         annual_recent[col] = annual_recent[col] / 1_000_000
+    #         annual_recent.rename(columns={col: col + "(millions)"}, inplace=True)
+    # for col in quarterly_recent.columns:
+    #     if "_USD" in col or "_shares" in col and quarterly_recent[col].abs().max() > 1_000:
+    #         quarterly_recent[col] = quarterly_recent[col] / 1_000_000
+    #         quarterly_recent.rename(columns={col: col + "(millions)"}, inplace=True)
+    return quarterly_recent, annual_recent
 
-def get_parsed_facts_in_csv(ticker) -> None:
-    if not os.path.exists('facts_data'):
-        os.makedirs('facts_data')
-    parsed_facts_df = get_parsed_facts(ticker)
-    parsed_facts_df.to_csv(f'facts_data/{ticker}_parsed_edgar_facts.csv')
+def get_parsed_facts_in_csv(ticker: str) -> None:
+    if not os.path.exists(f'{ticker}_facts_data'):
+        os.makedirs(f'{ticker}_facts_data')
+    quarterly, annual = split_and_process_facts(ticker)
+    quarterly.to_csv(f'{ticker}_facts_data/{ticker}_quarterly_edgar_facts.csv')
+    annual.to_csv(f'{ticker}_facts_data/{ticker}_annual_edgar_facts.csv')
+    return print(f'CSV files for {ticker} have been created in the {ticker}_facts_data folder')

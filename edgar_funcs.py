@@ -30,7 +30,7 @@ def get_cik_for_ticker(ticker: str) -> str:
     cik = cik_df[cik_df["ticker"] == ticker]["cik_str"].values[0]
     return cik
 
-
+# these two are for more niche cases where we want to find a company by searcing for a string in the name
 def get_ciks_matching_tickers_df():
     headers = {"User-Agent": "russ@sunriseanalysis.com"}
     # Get the tickers JSON file

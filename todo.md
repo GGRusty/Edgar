@@ -1,0 +1,12 @@
+# Next Steps
+- use the submissions endpoint to get company info, name, financial year end, sic
+- create a function that takes in a CIK and returns the annual dataframe for that company as well as quarterly basically what i did just split it into two more functions
+- rewrite the edgar_funcs.py file to use a class
+- use the logic from the concept_parser to to better parsse the facts dataframes
+- get streamlit working to display the dataframes and gives the ability to download the dataframes as csv files as well as the ability to add features
+- find a way to parse the 10q xml files to get the tags used in the filings for the main financial statements (lxml ET.iterparse)
+- find the different names for the main tags so that they can be used in if statements to quickly parse the facts dataframes
+- combine the different companies into a dataset for annual data that uses an outer join to combine the dataframes so it preserves all the columns
+- get started on the optimatl features to add to the annual dataframes to be used in the machine learning model
+- PULL INTERESTING DATA FROM FRED AND ADD IT TO THE DATAFRAME
+- contribute to openml so that the dataset can be used by others

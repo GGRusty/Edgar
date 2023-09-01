@@ -1,0 +1,713 @@
+<?xml version='1.0' encoding='utf-8'?>
+<FilingSummary>
+  <Version>3.23.1</Version>
+  <ProcessingTime/>
+  <ReportFormat>html</ReportFormat>
+  <ContextCount>146</ContextCount>
+  <ElementCount>327</ElementCount>
+  <EntityCount>1</EntityCount>
+  <FootnotesReported>true</FootnotesReported>
+  <SegmentCount>50</SegmentCount>
+  <ScenarioCount>0</ScenarioCount>
+  <TuplesReported>false</TuplesReported>
+  <UnitCount>7</UnitCount>
+  <MyReports>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R1.htm</HtmlFileName>
+      <LongName>0000001 - Document - Cover Page</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/CoverPage</Role>
+      <ShortName>Cover Page</ShortName>
+      <MenuCategory>Cover</MenuCategory>
+      <Position>1</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R2.htm</HtmlFileName>
+      <LongName>0000002 - Document - Audit Information</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/AuditInformation</Role>
+      <ShortName>Audit Information</ShortName>
+      <MenuCategory>Cover</MenuCategory>
+      <Position>2</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R3.htm</HtmlFileName>
+      <LongName>0000003 - Statement - Consolidated Statements of Earnings</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/ConsolidatedStatementsofEarnings</Role>
+      <ShortName>Consolidated Statements of Earnings</ShortName>
+      <MenuCategory>Statements</MenuCategory>
+      <Position>3</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R4.htm</HtmlFileName>
+      <LongName>0000004 - Statement - Consolidated Statements of Comprehensive Income</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/ConsolidatedStatementsofComprehensiveIncome</Role>
+      <ShortName>Consolidated Statements of Comprehensive Income</ShortName>
+      <MenuCategory>Statements</MenuCategory>
+      <Position>4</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R5.htm</HtmlFileName>
+      <LongName>0000005 - Statement - Consolidated Statements of Comprehensive Income (Parenthetical)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/ConsolidatedStatementsofComprehensiveIncomeParenthetical</Role>
+      <ShortName>Consolidated Statements of Comprehensive Income (Parenthetical)</ShortName>
+      <MenuCategory>Statements</MenuCategory>
+      <Position>5</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R6.htm</HtmlFileName>
+      <LongName>0000006 - Statement - Consolidated Balance Sheets</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/ConsolidatedBalanceSheets</Role>
+      <ShortName>Consolidated Balance Sheets</ShortName>
+      <MenuCategory>Statements</MenuCategory>
+      <Position>6</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R7.htm</HtmlFileName>
+      <LongName>0000007 - Statement - Consolidated Balance Sheets (Parenthetical)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/ConsolidatedBalanceSheetsParenthetical</Role>
+      <ShortName>Consolidated Balance Sheets (Parenthetical)</ShortName>
+      <MenuCategory>Statements</MenuCategory>
+      <Position>7</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R8.htm</HtmlFileName>
+      <LongName>0000008 - Statement - Consolidated Statements of Stockholders' Equity</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/ConsolidatedStatementsofStockholdersEquity</Role>
+      <ShortName>Consolidated Statements of Stockholders' Equity</ShortName>
+      <MenuCategory>Statements</MenuCategory>
+      <Position>8</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R9.htm</HtmlFileName>
+      <LongName>0000009 - Statement - Consolidated Statements of Cash Flows</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/ConsolidatedStatementsofCashFlows</Role>
+      <ShortName>Consolidated Statements of Cash Flows</ShortName>
+      <MenuCategory>Statements</MenuCategory>
+      <Position>9</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R10.htm</HtmlFileName>
+      <LongName>0000010 - Disclosure - Summary of Significant Accounting Policies</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/SummaryofSignificantAccountingPolicies</Role>
+      <ShortName>Summary of Significant Accounting Policies</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>10</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R11.htm</HtmlFileName>
+      <LongName>0000011 - Disclosure - Property and Equipment</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/PropertyandEquipment</Role>
+      <ShortName>Property and Equipment</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>11</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R12.htm</HtmlFileName>
+      <LongName>0000012 - Disclosure - Borrowing Arrangements</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/BorrowingArrangements</Role>
+      <ShortName>Borrowing Arrangements</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>12</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R13.htm</HtmlFileName>
+      <LongName>0000013 - Disclosure - Income Taxes</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/IncomeTaxes</Role>
+      <ShortName>Income Taxes</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>13</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R14.htm</HtmlFileName>
+      <LongName>0000014 - Disclosure - Leases</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/Leases</Role>
+      <ShortName>Leases</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>14</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R15.htm</HtmlFileName>
+      <LongName>0000015 - Disclosure - Earnings Per Share</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/EarningsPerShare</Role>
+      <ShortName>Earnings Per Share</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>15</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R16.htm</HtmlFileName>
+      <LongName>0000016 - Disclosure - Stock-Based Compensation</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/StockBasedCompensation</Role>
+      <ShortName>Stock-Based Compensation</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>16</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R17.htm</HtmlFileName>
+      <LongName>0000017 - Disclosure - Williams-Sonoma, Inc. 401(k) Plan and Other Employee Benefits</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/WilliamsSonomaInc401kPlanandOtherEmployeeBenefits</Role>
+      <ShortName>Williams-Sonoma, Inc. 401(k) Plan and Other Employee Benefits</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>17</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R18.htm</HtmlFileName>
+      <LongName>0000018 - Disclosure - Commitments and Contingencies</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/CommitmentsandContingencies</Role>
+      <ShortName>Commitments and Contingencies</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>18</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R19.htm</HtmlFileName>
+      <LongName>0000019 - Disclosure - Stock Repurchase Program and Dividends</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/StockRepurchaseProgramandDividends</Role>
+      <ShortName>Stock Repurchase Program and Dividends</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>19</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R20.htm</HtmlFileName>
+      <LongName>0000020 - Disclosure - Segment Reporting</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/SegmentReporting</Role>
+      <ShortName>Segment Reporting</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>20</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R21.htm</HtmlFileName>
+      <LongName>0000021 - Disclosure - Derivative Financial Instruments</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/DerivativeFinancialInstruments</Role>
+      <ShortName>Derivative Financial Instruments</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>21</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R22.htm</HtmlFileName>
+      <LongName>0000022 - Disclosure - Fair Value Measurements</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/FairValueMeasurements</Role>
+      <ShortName>Fair Value Measurements</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>22</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R23.htm</HtmlFileName>
+      <LongName>0000023 - Disclosure - Accumulated Other Comprehensive Income (Loss)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/AccumulatedOtherComprehensiveIncomeLoss</Role>
+      <ShortName>Accumulated Other Comprehensive Income (Loss)</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>23</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R24.htm</HtmlFileName>
+      <LongName>0000024 - Disclosure - Summary of Significant Accounting Policies (Policies)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/SummaryofSignificantAccountingPoliciesPolicies</Role>
+      <ShortName>Summary of Significant Accounting Policies (Policies)</ShortName>
+      <MenuCategory>Policies</MenuCategory>
+      <ParentRole>http://www.williams-sonoma.com/20200930/role/SummaryofSignificantAccountingPolicies</ParentRole>
+      <Position>24</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R25.htm</HtmlFileName>
+      <LongName>0000025 - Disclosure - Summary of Significant Accounting Policies (Tables)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/SummaryofSignificantAccountingPoliciesTables</Role>
+      <ShortName>Summary of Significant Accounting Policies (Tables)</ShortName>
+      <MenuCategory>Tables</MenuCategory>
+      <ParentRole>http://www.williams-sonoma.com/20200930/role/SummaryofSignificantAccountingPolicies</ParentRole>
+      <Position>25</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R26.htm</HtmlFileName>
+      <LongName>0000026 - Disclosure - Property and Equipment (Tables)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/PropertyandEquipmentTables</Role>
+      <ShortName>Property and Equipment (Tables)</ShortName>
+      <MenuCategory>Tables</MenuCategory>
+      <ParentRole>http://www.williams-sonoma.com/20200930/role/PropertyandEquipment</ParentRole>
+      <Position>26</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R27.htm</HtmlFileName>
+      <LongName>0000027 - Disclosure - Income Taxes (Tables)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/IncomeTaxesTables</Role>
+      <ShortName>Income Taxes (Tables)</ShortName>
+      <MenuCategory>Tables</MenuCategory>
+      <ParentRole>http://www.williams-sonoma.com/20200930/role/IncomeTaxes</ParentRole>
+      <Position>27</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R28.htm</HtmlFileName>
+      <LongName>0000028 - Disclosure - Leases (Tables)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/LeasesTables</Role>
+      <ShortName>Leases (Tables)</ShortName>
+      <MenuCategory>Tables</MenuCategory>
+      <ParentRole>http://www.williams-sonoma.com/20200930/role/Leases</ParentRole>
+      <Position>28</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R29.htm</HtmlFileName>
+      <LongName>0000029 - Disclosure - Earnings Per Share (Tables)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/EarningsPerShareTables</Role>
+      <ShortName>Earnings Per Share (Tables)</ShortName>
+      <MenuCategory>Tables</MenuCategory>
+      <ParentRole>http://www.williams-sonoma.com/20200930/role/EarningsPerShare</ParentRole>
+      <Position>29</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R30.htm</HtmlFileName>
+      <LongName>0000030 - Disclosure - Stock-Based Compensation (Tables)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/StockBasedCompensationTables</Role>
+      <ShortName>Stock-Based Compensation (Tables)</ShortName>
+      <MenuCategory>Tables</MenuCategory>
+      <ParentRole>http://www.williams-sonoma.com/20200930/role/StockBasedCompensation</ParentRole>
+      <Position>30</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R31.htm</HtmlFileName>
+      <LongName>0000031 - Disclosure - Segment Reporting (Tables)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/SegmentReportingTables</Role>
+      <ShortName>Segment Reporting (Tables)</ShortName>
+      <MenuCategory>Tables</MenuCategory>
+      <ParentRole>http://www.williams-sonoma.com/20200930/role/SegmentReporting</ParentRole>
+      <Position>31</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R32.htm</HtmlFileName>
+      <LongName>0000032 - Disclosure - Accumulated Other Comprehensive Income (Loss) (Tables)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/AccumulatedOtherComprehensiveIncomeLossTables</Role>
+      <ShortName>Accumulated Other Comprehensive Income (Loss) (Tables)</ShortName>
+      <MenuCategory>Tables</MenuCategory>
+      <ParentRole>http://www.williams-sonoma.com/20200930/role/AccumulatedOtherComprehensiveIncomeLoss</ParentRole>
+      <Position>32</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R33.htm</HtmlFileName>
+      <LongName>0000033 - Disclosure - Summary of Significant Accounting Policies - Additional Information (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/SummaryofSignificantAccountingPoliciesAdditionalInformationDetails</Role>
+      <ShortName>Summary of Significant Accounting Policies - Additional Information (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>33</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R34.htm</HtmlFileName>
+      <LongName>0000034 - Disclosure - Summary of Significant Accounting Policies - Estimated Useful Lives of Property and Equipment (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/SummaryofSignificantAccountingPoliciesEstimatedUsefulLivesofPropertyandEquipmentDetails</Role>
+      <ShortName>Summary of Significant Accounting Policies - Estimated Useful Lives of Property and Equipment (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>34</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R35.htm</HtmlFileName>
+      <LongName>0000035 - Disclosure - Property and Equipment (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/PropertyandEquipmentDetails</Role>
+      <ShortName>Property and Equipment (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <ParentRole>http://www.williams-sonoma.com/20200930/role/PropertyandEquipmentTables</ParentRole>
+      <Position>35</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R36.htm</HtmlFileName>
+      <LongName>0000036 - Disclosure - Borrowing Arrangements (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/BorrowingArrangementsDetails</Role>
+      <ShortName>Borrowing Arrangements (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <ParentRole>http://www.williams-sonoma.com/20200930/role/BorrowingArrangements</ParentRole>
+      <Position>36</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R37.htm</HtmlFileName>
+      <LongName>0000037 - Disclosure - Income Taxes - Components of Earnings Before Income Taxes, by Tax Jurisdiction (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/IncomeTaxesComponentsofEarningsBeforeIncomeTaxesbyTaxJurisdictionDetails</Role>
+      <ShortName>Income Taxes - Components of Earnings Before Income Taxes, by Tax Jurisdiction (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>37</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R38.htm</HtmlFileName>
+      <LongName>0000038 - Disclosure - Income Taxes - Components Of Provision For Income Taxes (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/IncomeTaxesComponentsOfProvisionForIncomeTaxesDetails</Role>
+      <ShortName>Income Taxes - Components Of Provision For Income Taxes (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>38</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R39.htm</HtmlFileName>
+      <LongName>0000039 - Disclosure - Income Taxes - Reconciliation of Income Taxes At Federal Statutory Rate to Effective Rate (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/IncomeTaxesReconciliationofIncomeTaxesAtFederalStatutoryRatetoEffectiveRateDetails</Role>
+      <ShortName>Income Taxes - Reconciliation of Income Taxes At Federal Statutory Rate to Effective Rate (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>39</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R40.htm</HtmlFileName>
+      <LongName>0000040 - Disclosure - Income Taxes - Significant Components of Deferred Income Tax Accounts (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/IncomeTaxesSignificantComponentsofDeferredIncomeTaxAccountsDetails</Role>
+      <ShortName>Income Taxes - Significant Components of Deferred Income Tax Accounts (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>40</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R41.htm</HtmlFileName>
+      <LongName>0000041 - Disclosure - Income Taxes - Summary of Activity Related to Gross Unrecognized Tax Benefits (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/IncomeTaxesSummaryofActivityRelatedtoGrossUnrecognizedTaxBenefitsDetails</Role>
+      <ShortName>Income Taxes - Summary of Activity Related to Gross Unrecognized Tax Benefits (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>41</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R42.htm</HtmlFileName>
+      <LongName>0000042 - Disclosure - Income Taxes - Additional Information (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/IncomeTaxesAdditionalInformationDetails</Role>
+      <ShortName>Income Taxes - Additional Information (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>42</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R43.htm</HtmlFileName>
+      <LongName>0000043 - Disclosure - Leases - Components of Leases Costs (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/LeasesComponentsofLeasesCostsDetails</Role>
+      <ShortName>Leases - Components of Leases Costs (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>43</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R44.htm</HtmlFileName>
+      <LongName>0000044 - Disclosure - Leases - Supplemental Cash Flow Information Related To Our Leases (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/LeasesSupplementalCashFlowInformationRelatedToOurLeasesDetails</Role>
+      <ShortName>Leases - Supplemental Cash Flow Information Related To Our Leases (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>44</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R45.htm</HtmlFileName>
+      <LongName>0000045 - Disclosure - Leases - Weighted Average Remaining Operating Lease Term And Incremental Borrowing Rate (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/LeasesWeightedAverageRemainingOperatingLeaseTermAndIncrementalBorrowingRateDetails</Role>
+      <ShortName>Leases - Weighted Average Remaining Operating Lease Term And Incremental Borrowing Rate (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>45</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R46.htm</HtmlFileName>
+      <LongName>0000046 - Disclosure - Leases - Future Minimum Lease Payments Under Our Operating Lease Liabilities (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/LeasesFutureMinimumLeasePaymentsUnderOurOperatingLeaseLiabilitiesDetails</Role>
+      <ShortName>Leases - Future Minimum Lease Payments Under Our Operating Lease Liabilities (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>46</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R47.htm</HtmlFileName>
+      <LongName>0000047 - Disclosure - Leases - Additional Information (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/LeasesAdditionalInformationDetails</Role>
+      <ShortName>Leases - Additional Information (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>47</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R48.htm</HtmlFileName>
+      <LongName>0000048 - Disclosure - Earnings Per Share - Reconciliation of Net Earnings and Number of Shares Used in Basic and Diluted Earnings Per Share Computations (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/EarningsPerShareReconciliationofNetEarningsandNumberofSharesUsedinBasicandDilutedEarningsPerShareComputationsDetails</Role>
+      <ShortName>Earnings Per Share - Reconciliation of Net Earnings and Number of Shares Used in Basic and Diluted Earnings Per Share Computations (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>48</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R49.htm</HtmlFileName>
+      <LongName>0000049 - Disclosure - Stock-Based Compensation - Additional Information (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/StockBasedCompensationAdditionalInformationDetails</Role>
+      <ShortName>Stock-Based Compensation - Additional Information (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>49</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R50.htm</HtmlFileName>
+      <LongName>0000050 - Disclosure - Stock-Based Compensation - Summary of Restricted Stock Unit Activity (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/StockBasedCompensationSummaryofRestrictedStockUnitActivityDetails</Role>
+      <ShortName>Stock-Based Compensation - Summary of Restricted Stock Unit Activity (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>50</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R51.htm</HtmlFileName>
+      <LongName>0000051 - Disclosure - Stock-Based Compensation - Summary of Additional Information about Restricted Stock Units (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/StockBasedCompensationSummaryofAdditionalInformationaboutRestrictedStockUnitsDetails</Role>
+      <ShortName>Stock-Based Compensation - Summary of Additional Information about Restricted Stock Units (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>51</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R52.htm</HtmlFileName>
+      <LongName>0000052 - Disclosure - Williams-Sonoma, Inc. 401(k) Plan and Other Employee Benefits (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/WilliamsSonomaInc401kPlanandOtherEmployeeBenefitsDetails</Role>
+      <ShortName>Williams-Sonoma, Inc. 401(k) Plan and Other Employee Benefits (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <ParentRole>http://www.williams-sonoma.com/20200930/role/WilliamsSonomaInc401kPlanandOtherEmployeeBenefits</ParentRole>
+      <Position>52</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R53.htm</HtmlFileName>
+      <LongName>0000053 - Disclosure - Stock Repurchase Program and Dividends (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/StockRepurchaseProgramandDividendsDetails</Role>
+      <ShortName>Stock Repurchase Program and Dividends (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <ParentRole>http://www.williams-sonoma.com/20200930/role/StockRepurchaseProgramandDividends</ParentRole>
+      <Position>53</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R54.htm</HtmlFileName>
+      <LongName>0000054 - Disclosure - Segment Reporting - Narrative (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/SegmentReportingNarrativeDetails</Role>
+      <ShortName>Segment Reporting - Narrative (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>54</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R55.htm</HtmlFileName>
+      <LongName>0000055 - Disclosure - Segment Reporting - Summary of Segment Reporting Information by Segment (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/SegmentReportingSummaryofSegmentReportingInformationbySegmentDetails</Role>
+      <ShortName>Segment Reporting - Summary of Segment Reporting Information by Segment (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>55</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R56.htm</HtmlFileName>
+      <LongName>0000056 - Disclosure - Segment Reporting - Summary of Long-lived Assets by Geographic Areas (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/SegmentReportingSummaryofLonglivedAssetsbyGeographicAreasDetails</Role>
+      <ShortName>Segment Reporting - Summary of Long-lived Assets by Geographic Areas (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>56</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R57.htm</HtmlFileName>
+      <LongName>0000057 - Disclosure - Derivative Financial Instruments - Additional Information (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/DerivativeFinancialInstrumentsAdditionalInformationDetails</Role>
+      <ShortName>Derivative Financial Instruments - Additional Information (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <Position>57</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R58.htm</HtmlFileName>
+      <LongName>0000058 - Disclosure - Fair Value Measurements (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/FairValueMeasurementsDetails</Role>
+      <ShortName>Fair Value Measurements (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <ParentRole>http://www.williams-sonoma.com/20200930/role/FairValueMeasurements</ParentRole>
+      <Position>58</Position>
+    </Report>
+    <Report instance="wsm-20230129.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R59.htm</HtmlFileName>
+      <LongName>0000059 - Disclosure - Accumulated Other Comprehensive Income (Loss) (Details)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.williams-sonoma.com/20200930/role/AccumulatedOtherComprehensiveIncomeLossDetails</Role>
+      <ShortName>Accumulated Other Comprehensive Income (Loss) (Details)</ShortName>
+      <MenuCategory>Details</MenuCategory>
+      <ParentRole>http://www.williams-sonoma.com/20200930/role/AccumulatedOtherComprehensiveIncomeLossTables</ParentRole>
+      <Position>59</Position>
+    </Report>
+    <Report>
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <LongName>All Reports</LongName>
+      <ReportType>Book</ReportType>
+      <ShortName>All Reports</ShortName>
+    </Report>
+  </MyReports>
+  <Logs>
+    <Log type="Warning">[ix-0514-Hidden-Fact-Eligible-For-Transform] WARN: 1 fact(s) appearing in ix:hidden were eligible for transformation: us-gaap:NumberOfReportableSegments -  wsm-20230129.htm 4</Log>
+  </Logs>
+  <InputFiles>
+    <File doctype="10-K" original="wsm-20230129.htm">wsm-20230129.htm</File>
+    <File>exhibit211fy2022subsidiari.htm</File>
+    <File>exhibit231fy2022consentofi.htm</File>
+    <File>exhibit311fy202210kceocert.htm</File>
+    <File>exhibit312fy202210kcfocert.htm</File>
+    <File>exhibit321fy202210kceocert.htm</File>
+    <File>exhibit322fy202210kcfocert.htm</File>
+    <File>wsm-20230129.xsd</File>
+    <File>wsm-20230129_cal.xml</File>
+    <File>wsm-20230129_def.xml</File>
+    <File>wsm-20230129_lab.xml</File>
+    <File>wsm-20230129_pre.xml</File>
+  </InputFiles>
+  <SupplementalFiles>
+    <File>wsm-20230129_g1.jpg</File>
+  </SupplementalFiles>
+  <BaseTaxonomies>
+    <BaseTaxonomy items="736">http://fasb.org/us-gaap/2022</BaseTaxonomy>
+    <BaseTaxonomy items="37">http://xbrl.sec.gov/dei/2022</BaseTaxonomy>
+  </BaseTaxonomies>
+  <HasPresentationLinkbase>true</HasPresentationLinkbase>
+  <HasCalculationLinkbase>true</HasCalculationLinkbase>
+</FilingSummary>

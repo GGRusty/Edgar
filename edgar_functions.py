@@ -1,5 +1,4 @@
 # these are the formulas for the edgar workflow I will detail themn so that it is clear what is happening as well as the idea behind each step all examples will be using the wsm data if there are specifics
-import re
 import requests
 import logging
 import numpy as np
@@ -190,21 +189,39 @@ def get_statement_file_names_in_filing_summary(ticker, accession_number):
 def get_statement_soup(ticker, accession_number, statement_name):
     """
     the statement_name should be one of the following:
-    'consolidated balance sheets'
-    'consolidated statements of earnings'
-    'consolidated statements of cash flows'
+    
+    'balance sheet'
+    'income statement'
+    'cash flow statement'
     """
     cik = get_cik_matching_ticker(ticker)
     statement_name = statement_name.lower()
     headers = {"User-Agent": "russ@sunriseanalysis.com"}
     base_link = f"https://www.sec.gov/Archives/edgar/data/{cik}/{accession_number}"
     statement_file_names_dict = get_statement_file_names_in_filing_summary(ticker, accession_number)
-    statement_link = (f"{base_link}/{statement_file_names_dict[statement_name]}")
+    statement_keys_map = {
+        'balance sheet': ['balance sheet', 'consolidated balance sheets'],
+        'income statement': ['income statement', 'consolidated statements of operations', 'consolidated statements of earnings'],
+        'cash flow statement': ['cash flows statement', 'consolidated statements of cash flows', 'consolidated statements of cash flows (unaudited)']
+    }
+    
+    statement_link = None
+    for possible_key in statement_keys_map.get(statement_name, [statement_name]):
+        try:
+            statement_link = (f"{base_link}/{statement_file_names_dict[possible_key]}")
+            break
+        except KeyError:
+            continue
+    
+    if statement_link is None:
+        raise ValueError(f"Could not find statement with name {statement_name}")
+    
     statement_response = requests.get(statement_link, headers=headers)
     if statement_link.endswith(".xml"):
         soup = BeautifulSoup(statement_response.content, "lxml-xml", from_encoding="utf-8")
     else:
         soup = BeautifulSoup(statement_response.content, "lxml")
+    
     return soup
 
 
@@ -295,9 +312,9 @@ def create_dataframe_of_statement_values_columns_dates(values_set, columns, inde
 
 
 
-def process_one_statement(ticker, accession_number, statement_type):
+def process_one_statement(ticker, accession_number, statement_name):
     try:
-        soup = get_statement_soup(ticker, accession_number, statement_type)
+        soup = get_statement_soup(ticker, accession_number, statement_name)
     except Exception as e:
         logging.error(
             f"Failed to get statement soup: {e} for accession number: {accession_number}"
@@ -316,18 +333,18 @@ def process_one_statement(ticker, accession_number, statement_type):
       
 
 
-def form_statement_for_all_available_years(ticker, statement_type):
+def form_statement_for_all_available_years(ticker, statement_name):
     accession_number_series = get_10K_accessionNumbers_for_ticker(ticker)
     all_available_years = pd.DataFrame()
     for accession_number in accession_number_series:
-        df = process_one_statement(ticker, accession_number, statement_type)
+        df = process_one_statement(ticker, accession_number, statement_name)
         all_available_years = pd.concat([all_available_years, df], axis=0, join="outer")
         print(
-            f"{statement_type} for accession number: {accession_number} has been processed."
+            f"{statement_name} for accession number: {accession_number} has been processed."
         )
         df_combined = (
             all_available_years.groupby(all_available_years.index)
-            .agg(custom_aggregator_same_date)
+            .agg(custom_aggregator)
             .sort_index(ascending=False)
         )
     return df_combined.T
@@ -341,7 +358,7 @@ Helper functions for the main functions below
 
 """
 
-def custom_aggregator_same_date(series):
+def custom_aggregator(series):
     first_val = series.iloc[0]
     for value in series[1:]:
         if pd.isna(first_val) and not pd.isna(value):
@@ -366,8 +383,8 @@ def retrieve_balance_income_cf_and_store_as_CSV(ticker, blank: bool = True):
     return all_three_statements
  
     
-def save_dataframe_to_csv(dataframe, ticker, statement_type, frequency):
-    dataframe.to_csv(f"results/{ticker}/{statement_type}_{frequency}.csv")
+def save_dataframe_to_csv(dataframe, ticker, statement_name, frequency):
+    dataframe.to_csv(f"results/{ticker}/{statement_name}_{frequency}.csv")
     return None
     
     

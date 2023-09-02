@@ -1,4 +1,3 @@
-# these are the formulas for the edgar workflow I will detail themn so that it is clear what is happening as well as the idea behind each step all examples will be using the wsm data if there are specifics
 import requests
 import logging
 import numpy as np
@@ -24,6 +23,7 @@ def get_cik_matching_ticker(ticker: str) -> str:
         ValueError: If ticker is not a string.
     """
     ticker = ticker.upper()
+    ticker = ticker.replace(".", "-")
     headers = {"User-Agent": "russ@sunriseanalysis.com"}
     tickers_json = requests.get(
         "https://www.sec.gov/files/company_tickers.json", headers=headers
@@ -189,10 +189,9 @@ def get_statement_file_names_in_filing_summary(ticker, accession_number):
 def get_statement_soup(ticker, accession_number, statement_name):
     """
     the statement_name should be one of the following:
-    
-    'balance sheet'
-    'income statement'
-    'cash flow statement'
+    'balance_sheet'
+    'income_statement'
+    'cash_flow_statement'
     """
     cik = get_cik_matching_ticker(ticker)
     statement_name = statement_name.lower()
@@ -200,11 +199,53 @@ def get_statement_soup(ticker, accession_number, statement_name):
     base_link = f"https://www.sec.gov/Archives/edgar/data/{cik}/{accession_number}"
     statement_file_names_dict = get_statement_file_names_in_filing_summary(ticker, accession_number)
     statement_keys_map = {
-        'balance sheet': ['balance sheet', 'consolidated balance sheets'],
-        'income statement': ['income statement', 'consolidated statements of operations', 'consolidated statements of earnings'],
-        'cash flow statement': ['cash flows statement', 'consolidated statements of cash flows', 'consolidated statements of cash flows (unaudited)']
+        'balance_sheet': [
+            'balance sheet',
+            'balance sheets',
+            'statement of financial position',
+            'consolidated balance sheets',
+            'consolidated balance sheet',
+            'consolidated financial position',
+            'consolidated balance sheets - southern',
+            'consolidated statements of financial position',
+            'consolidated statements of financial condition',
+            'consolidated balance sheets, as of december 31',
+            'dow consolidated balance sheets',
+        ],
+        'income_statement': [
+            'income statement',
+            'income statements',
+            'statement of earnings (loss)',
+            'statements of consolidated income',
+            'consolidated statements of operations',
+            'consolidated statement of operations', 
+            'consolidated statements of earnings', 
+            'consolidated statement of earnings',
+            'consolidated statements of income', 
+            'consolidated statement of income',
+            'consolidated income statements',
+            'consolidated income statement',
+            'consolidated results of operations',
+            'consolidated statements of income (loss)',
+            'consolidated statements of income - southern',
+            'consolidated statements of operations and comprehensive income',
+            'consolidated statements of comprehensive income',
+        ],
+        'cash_flow_statement': [
+            'cash flows statement',
+            'cash flows statements',
+            'statement of cash flows',
+            'statements of consolidated cash flows',
+            'consolidated statements of cash flows',
+            'consolidated statement of cash flows',
+            'consolidated statement of cash flow',
+            'consolidated cash flows statements',
+            'consolidated cash flow statements',
+            'consolidated statements of cash flows (unaudited)',
+            'consolidated statements of cash flows - southern',
+        ]
     }
-    
+
     statement_link = None
     for possible_key in statement_keys_map.get(statement_name, [statement_name]):
         try:
@@ -251,7 +292,6 @@ def extract_columns_values_and_dates_from_statement(soup: BeautifulSoup):
             onclick_attr = onclick_elements[0]["onclick"]
             column_title = onclick_attr.split("defref_")[-1].split("',")[0]
             columns.append(column_title)
-            
             values = [np.NaN] * len(date_time_index)
             
             for i, cell in enumerate(row.select("td.text, td.nump, td.num")):
@@ -263,23 +303,19 @@ def extract_columns_values_and_dates_from_statement(soup: BeautifulSoup):
                     .replace(",", "")
                     .replace("(", "")
                     .replace(")", "")
-                    .strip()
-                )
-                
+                    .strip())
                 value = keep_numbers_and_decimals_only_in_string(value)
                 if value:
                     value = float(value)
                     if not special_case:
                         value *= unit_multiplier
                     else:
-                        # Special handling can go here
                         pass
                 
                 if "nump" in cell.get("class"):
                     values[i] = value / unit_multiplier if unit_multiplier != 1 else value
                 else:
                     values[i] = -value / unit_multiplier if unit_multiplier != 1 else -value
-            
             values_set.append(values)
     
     return columns, values_set, date_time_index
@@ -367,18 +403,18 @@ def custom_aggregator(series):
 
 
 def retrieve_balance_income_cf_and_store_as_CSV(ticker, blank: bool = True):
-    earnings_sheet = form_statement_for_all_available_years(ticker, "consolidated statements of earnings")
-    balance_sheet = form_statement_for_all_available_years(ticker, "consolidated balance sheets")
-    cash_flow_sheet = form_statement_for_all_available_years(ticker, "consolidated statements of cash flows")
+    earnings_sheet = form_statement_for_all_available_years(ticker, "income_statement")
+    balance_sheet = form_statement_for_all_available_years(ticker, "balance_sheet")
+    cash_flow_sheet = form_statement_for_all_available_years(ticker, "cash_flow_statement")
     all_three_statements = pd.concat(
     [balance_sheet, earnings_sheet, cash_flow_sheet],
     keys=["balance_sheet", "earnings_sheet", "cash_flow_sheet"],
 )
     if blank == True:
         all_three_statements = all_three_statements.replace(["None", np.NaN], "")
-    save_dataframe_to_csv(cash_flow_sheet, ticker, "consolidated statements of cash flows", "annual")
-    save_dataframe_to_csv(balance_sheet, ticker, "consolidated balance sheets", "annual")
-    save_dataframe_to_csv(earnings_sheet, ticker, "consolidated statements of earnings", "annual")
+    save_dataframe_to_csv(cash_flow_sheet, ticker, "cash_flow_statement", "annual")
+    save_dataframe_to_csv(balance_sheet, ticker, "balance_sheet", "annual")
+    save_dataframe_to_csv(earnings_sheet, ticker, "income_statement", "annual")
     save_dataframe_to_csv(all_three_statements, ticker, "all_three_main_statements", "annual")
     return all_three_statements
  
@@ -396,15 +432,28 @@ def print_links_to_desired_statment(ticker, statement_name):
         base_link = f"https://www.sec.gov/Archives/edgar/data/{cik}/{accession_number}"
         try:
             statement_file_names_dict = get_statement_file_names_in_filing_summary(ticker, accession_number)
-            statement_link = f"{base_link}/{statement_file_names_dict[statement_name]}"
+            statement_keys_map = {
+                'balance_sheet': ['balance sheet', 'consolidated balance sheets'],
+                'income_statement': ['income statement', 'consolidated statements of operations', 'consolidated statements of earnings'],
+                'cash_flow_statement': ['cash flows statement', 'consolidated statements of cash flows', 'consolidated statements of cash flows (unaudited)']
+            }
+
+            statement_link = None
+            for possible_key in statement_keys_map.get(statement_name, [statement_name]):
+                try:
+                    statement_link = (f"{base_link}/{statement_file_names_dict[possible_key]}")
+                    break
+                except KeyError:
+                    continue
+            if statement_link is None:
+                raise ValueError(f"Could not find statement with name {statement_name}")
+            
         except:
             continue
         print(statement_link)
     return None
     
     
-def keep_numbers_only_in_string(mixed_string: str):
-    return "".join([character for character in mixed_string if character.isdigit()])
 
 
 def keep_numbers_and_decimals_only_in_string(mixed_string: str):
@@ -419,11 +468,6 @@ def keep_letters_and_numbers_only_in_string(mixed_string: str):
     return "".join(allowed)
 
 
-def check_units_in_thousands_or_millions(soup: BeautifulSoup) -> (bool, bool):
-    content = soup.text.lower()
-    in_thousands = "in thousands" in content
-    in_millions = "in millions" in content
-    return in_thousands, in_millions
 
 
 def explore_facts_dict(data) -> pd.DataFrame:
@@ -505,14 +549,14 @@ def create_column_name_mapping_to_statement(soup: BeautifulSoup) -> dict:
     Create a dictionary that maps internal column titles to displayed names.
     
     Parameters:
-    - soup (BeautifulSoup): The HTML soup object containing the balance sheet.
+    - soup (BeautifulSoup): The HTML soup object containing the balance_sheet.
     
     Returns:
     - dict: Dictionary mapping internal column titles to displayed names.
     """
     column_name_mapping = {}
     
-    # Iterate through each row in the balance sheet table
+    # Iterate through each row in the balance_sheet table
     for row in soup.select("tr.re, tr.ro, tr.reu, tr.rou"):
         
         # Extract the 'onclick' attribute to get the internal column title
@@ -526,3 +570,9 @@ def create_column_name_mapping_to_statement(soup: BeautifulSoup) -> dict:
         column_name_mapping[column_title] = displayed_name
     
     return column_name_mapping
+
+
+def get_statement_using_pandas(ticker, accession_number, statement_name):
+        soup = get_statement_soup(ticker, accession_number, statement_name)
+        data = pd.read_html(str(soup))[0]
+        return data

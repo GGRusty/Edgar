@@ -1,6 +1,8 @@
+import sys
 import pytest
 import pandas as pd
 import time
+sys.path.append('..')
 from edgar_functions import get_statement_soup, get_10K_accessionNumbers_for_ticker
 
 tickers = pd.read_html('https://en.wikipedia.org/wiki/S%26P_100')[2]

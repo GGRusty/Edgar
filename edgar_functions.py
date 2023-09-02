@@ -208,9 +208,12 @@ def get_statement_soup(ticker, accession_number, statement_name):
             'consolidated financial position',
             'consolidated balance sheets - southern',
             'consolidated statements of financial position',
+            'consolidated statement of financial position',
             'consolidated statements of financial condition',
+            'combined and consolidated balance sheet',
             'consolidated balance sheets, as of december 31',
             'dow consolidated balance sheets',
+            'consolidated balance sheets (unaudited)',
         ],
         'income_statement': [
             'income statement',
@@ -271,7 +274,7 @@ def extract_columns_values_and_dates_from_statement(soup: BeautifulSoup):
     columns = []
     values_set = []
     date_time_index = get_datetime_index_dates_from_statement(soup)
-    
+    special_case = False
     for table in soup.find_all("table"):
         unit_multiplier = 1
         table_header = table.find("th")
@@ -433,10 +436,55 @@ def print_links_to_desired_statment(ticker, statement_name):
         try:
             statement_file_names_dict = get_statement_file_names_in_filing_summary(ticker, accession_number)
             statement_keys_map = {
-                'balance_sheet': ['balance sheet', 'consolidated balance sheets'],
-                'income_statement': ['income statement', 'consolidated statements of operations', 'consolidated statements of earnings'],
-                'cash_flow_statement': ['cash flows statement', 'consolidated statements of cash flows', 'consolidated statements of cash flows (unaudited)']
-            }
+        'balance_sheet': [
+            'balance sheet',
+            'balance sheets',
+            'statement of financial position',
+            'consolidated balance sheets',
+            'consolidated balance sheet',
+            'consolidated financial position',
+            'consolidated balance sheets - southern',
+            'consolidated statements of financial position',
+            'consolidated statement of financial position',
+            'consolidated statements of financial condition',
+            'combined and consolidated balance sheet',
+            'consolidated balance sheets, as of december 31',
+            'dow consolidated balance sheets',
+            'consolidated balance sheets (unaudited)',
+        ],
+        'income_statement': [
+            'income statement',
+            'income statements',
+            'statement of earnings (loss)',
+            'statements of consolidated income',
+            'consolidated statements of operations',
+            'consolidated statement of operations', 
+            'consolidated statements of earnings', 
+            'consolidated statement of earnings',
+            'consolidated statements of income', 
+            'consolidated statement of income',
+            'consolidated income statements',
+            'consolidated income statement',
+            'consolidated results of operations',
+            'consolidated statements of income (loss)',
+            'consolidated statements of income - southern',
+            'consolidated statements of operations and comprehensive income',
+            'consolidated statements of comprehensive income',
+        ],
+        'cash_flow_statement': [
+            'cash flows statement',
+            'cash flows statements',
+            'statement of cash flows',
+            'statements of consolidated cash flows',
+            'consolidated statements of cash flows',
+            'consolidated statement of cash flows',
+            'consolidated statement of cash flow',
+            'consolidated cash flows statements',
+            'consolidated cash flow statements',
+            'consolidated statements of cash flows (unaudited)',
+            'consolidated statements of cash flows - southern',
+        ]
+    }
 
             statement_link = None
             for possible_key in statement_keys_map.get(statement_name, [statement_name]):

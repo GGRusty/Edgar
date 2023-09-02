@@ -1,3 +1,5 @@
+# this test is to make sure that the get_statement_soup function is working properly
+# it takes around 6 minutes to run
 import sys
 import pytest
 import pandas as pd

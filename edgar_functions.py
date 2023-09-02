@@ -209,47 +209,63 @@ def get_statement_soup(ticker, accession_number, statement_name):
 
 
 
-# need to change to account for in millions
-def extract_columns_and_values_from_statement(soup: BeautifulSoup):
-    in_thousands = False
-    for th in soup.find_all("th"):
-        if re.search(r"in Thousands", th.get_text(), re.IGNORECASE):
-            in_thousands = True
-            break
-
+def extract_columns_values_and_dates_from_statement(soup: BeautifulSoup):
     columns = []
     values_set = []
-    for row in soup.select("tr.re, tr.ro, tr.reu, tr.rou"):
-        onclick_attr = row.select_one("td.pl a, td.pl.custom a")["onclick"]
-        column_title = onclick_attr.split("defref_")[-1].split("',")[0]
-        columns.append(column_title)
-        values = [np.NaN, np.NaN]
-
-        for i, cell in enumerate(row.select("td.text, td.nump, td.num")):
-            if "text" in cell.get("class"):
+    date_time_index = get_datetime_index_dates_from_statement(soup)
+    
+    for table in soup.find_all("table"):
+        unit_multiplier = 1
+        table_header = table.find("th")
+        if table_header:
+            header_text = table_header.get_text()
+            if "in Thousands" in header_text:
+                unit_multiplier = 1000
+            elif "in Millions" in header_text:
+                unit_multiplier = 1e6
+            if "unless otherwise specified" in header_text:
+                special_case = True
+        
+        for row in table.select("tr"):
+            onclick_elements = row.select("td.pl a, td.pl.custom a")
+            if not onclick_elements:
                 continue
-            value = (
-                cell.text.replace("$", "")
-                .replace(",", "")
-                .replace("(", "")
-                .replace(")", "")
-                .strip()
-            )
-
-            value = keep_numbers_and_decimals_only_in_string(value)
-            if value:
-                value = float(value)
-                if not in_thousands:
-                    value /= 1000
-
-            if "nump" in cell.get("class"):
-                values[i] = value
-            else:
-                values[i] = -value if value else value
-
-        values_set.append(values)
-
-    return columns, values_set
+                
+            onclick_attr = onclick_elements[0]["onclick"]
+            column_title = onclick_attr.split("defref_")[-1].split("',")[0]
+            columns.append(column_title)
+            
+            values = [np.NaN] * len(date_time_index)
+            
+            for i, cell in enumerate(row.select("td.text, td.nump, td.num")):
+                if "text" in cell.get("class"):
+                    continue
+                
+                value = (
+                    cell.text.replace("$", "")
+                    .replace(",", "")
+                    .replace("(", "")
+                    .replace(")", "")
+                    .strip()
+                )
+                
+                value = keep_numbers_and_decimals_only_in_string(value)
+                if value:
+                    value = float(value)
+                    if not special_case:
+                        value *= unit_multiplier
+                    else:
+                        # Special handling can go here
+                        pass
+                
+                if "nump" in cell.get("class"):
+                    values[i] = value / unit_multiplier if unit_multiplier != 1 else value
+                else:
+                    values[i] = -value / unit_multiplier if unit_multiplier != 1 else -value
+            
+            values_set.append(values)
+    
+    return columns, values_set, date_time_index
 
 
 
@@ -261,7 +277,7 @@ def get_datetime_index_dates_from_statement(soup: BeautifulSoup) -> pd.DatetimeI
     stores them in a list
     """
     table_headers = soup.find_all("th", {'class': 'th'})
-    dates = [th.div.string for th in table_headers]
+    dates = [str(th.div.string) for th in table_headers if th.div and th.div.string]
     index_dates = pd.to_datetime(dates)
     return index_dates
 
@@ -288,8 +304,7 @@ def process_one_statement(ticker, accession_number, statement_type):
         )
         soup = None
     if soup is not None:
-        columns, values = extract_columns_and_values_from_statement(soup)
-        dates = get_datetime_index_dates_from_statement(soup)
+        columns, values, dates = extract_columns_values_and_dates_from_statement(soup)
         df = create_dataframe_of_statement_values_columns_dates(values, columns, dates)
         df = df.loc[:, ~df.columns.duplicated()]
         if df.empty:
@@ -315,7 +330,7 @@ def form_statement_for_all_available_years(ticker, statement_type):
             .agg(custom_aggregator_same_date)
             .sort_index(ascending=False)
         )
-    return df_combined
+    return df_combined.T
     
 
 

@@ -1,5 +1,7 @@
+import os
 import requests
 import logging
+import calendar
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -211,6 +213,7 @@ def get_statement_soup(ticker, accession_number, statement_name):
             'consolidated statement of financial position',
             'consolidated statements of financial condition',
             'combined and consolidated balance sheet',
+            'condensed consolidated balance sheets',
             'consolidated balance sheets, as of december 31',
             'dow consolidated balance sheets',
             'consolidated balance sheets (unaudited)',
@@ -228,6 +231,7 @@ def get_statement_soup(ticker, accession_number, statement_name):
             'consolidated statement of income',
             'consolidated income statements',
             'consolidated income statement',
+            'condensed consolidated statements of earnings',
             'consolidated results of operations',
             'consolidated statements of income (loss)',
             'consolidated statements of income - southern',
@@ -244,6 +248,7 @@ def get_statement_soup(ticker, accession_number, statement_name):
             'consolidated statement of cash flow',
             'consolidated cash flows statements',
             'consolidated cash flow statements',
+            'condensed consolidated statements of cash flows',
             'consolidated statements of cash flows (unaudited)',
             'consolidated statements of cash flows - southern',
         ]
@@ -334,6 +339,7 @@ def get_datetime_index_dates_from_statement(soup: BeautifulSoup) -> pd.DatetimeI
     """
     table_headers = soup.find_all("th", {'class': 'th'})
     dates = [str(th.div.string) for th in table_headers if th.div and th.div.string]
+    dates = [standardize_date(date).replace('.','') for date in dates]
     index_dates = pd.to_datetime(dates)
     return index_dates
 
@@ -391,11 +397,37 @@ def form_statement_for_all_available_years(ticker, statement_name):
 
 
 
+def form_statement_for_all_available_quarters(ticker, statement_name):
+    accession_number_series = get_10Q_accessionNumbers_for_ticker(ticker)
+    all_available_quarters = pd.DataFrame()
+    for accession_number in accession_number_series:
+        df = process_one_statement(ticker, accession_number, statement_name)
+        all_available_quarters = pd.concat([all_available_quarters, df], axis=0, join="outer")
+        print(
+            f"{statement_name} for accession number: {accession_number} has been processed."
+        )
+        df_combined = (
+            all_available_quarters.groupby(all_available_quarters.index)
+            .agg(custom_aggregator)
+            .sort_index(ascending=False)
+        )
+    return df_combined.T
+
+
+
+
 """
 
 Helper functions for the main functions below
 
 """
+
+
+def standardize_date(date: str) -> str:
+    for abbr, full in zip(calendar.month_abbr[1:], calendar.month_name[1:]):
+        date = date.replace(abbr, full)
+    return date
+
 
 def custom_aggregator(series):
     first_val = series.iloc[0]
@@ -420,10 +452,29 @@ def retrieve_balance_income_cf_and_store_as_CSV(ticker, blank: bool = True):
     save_dataframe_to_csv(earnings_sheet, ticker, "income_statement", "annual")
     save_dataframe_to_csv(all_three_statements, ticker, "all_three_main_statements", "annual")
     return all_three_statements
+
+
+def store_balance_income_cf_for_all_quarters_and_years(ticker):
+    earnings_sheet = form_statement_for_all_available_years(ticker, "income_statement")
+    balance_sheet = form_statement_for_all_available_years(ticker, "balance_sheet")
+    cash_flow_sheet = form_statement_for_all_available_years(ticker, "cash_flow_statement")
+    save_dataframe_to_csv(cash_flow_sheet, 'quarterly&annual_results', ticker, "cash_flow_statement", "annual")
+    save_dataframe_to_csv(balance_sheet, 'quarterly&annual_results', ticker, "balance_sheet", "annual")
+    save_dataframe_to_csv(earnings_sheet, 'quarterly&annual_results', ticker, "income_statement", "annual")
+    earnings_sheet = form_statement_for_all_available_quarters(ticker, "income_statement")
+    balance_sheet = form_statement_for_all_available_quarters(ticker, "balance_sheet")
+    cash_flow_sheet = form_statement_for_all_available_quarters(ticker, "cash_flow_statement")
+    save_dataframe_to_csv(cash_flow_sheet, 'quarterly&annual_results', ticker, "cash_flow_statement", "quarterly")
+    save_dataframe_to_csv(balance_sheet, 'quarterly&annual_results', ticker, "balance_sheet", "quarterly")
+    save_dataframe_to_csv(earnings_sheet, 'quarterly&annual_results', ticker, "income_statement", "quarterly")
+    return None
  
     
-def save_dataframe_to_csv(dataframe, ticker, statement_name, frequency):
-    dataframe.to_csv(f"results/{ticker}/{statement_name}_{frequency}.csv")
+def save_dataframe_to_csv(dataframe, folder_name, ticker, statement_name, frequency):
+    directory_path = os.path.join(folder_name, ticker)
+    os.makedirs(directory_path, exist_ok=True)
+    file_path = os.path.join(directory_path, f"{statement_name}_{frequency}.csv")
+    dataframe.to_csv(file_path)
     return None
     
     

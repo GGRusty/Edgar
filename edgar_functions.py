@@ -4,8 +4,8 @@ import logging
 import calendar
 import numpy as np
 import pandas as pd
+from lxml import etree
 from bs4 import BeautifulSoup
-from collections import defaultdict
 
 headers = {"User-Agent": "russ@sunriseanalysis.com"}
 
@@ -163,6 +163,14 @@ def get_specific_filing_using_accessionNumber(ticker: str, accessionNumber: str)
 
 
 
+def filter_accession_number_index_page(df, column_name, search_term):
+    fitered_df = df[df[column_name].str.contains(search_term, case=False, na=False)]
+    filtered_list = fitered_df[column_name].tolist()
+    return filtered_list
+
+
+
+
 def get_statement_file_names_in_filing_summary(ticker, accession_number):
     cik = get_cik_matching_ticker(ticker)
     base_link = f"https://www.sec.gov/Archives/edgar/data/{cik}/{accession_number}"
@@ -272,6 +280,33 @@ def get_statement_soup(ticker, accession_number, statement_name):
         soup = BeautifulSoup(statement_response.content, "lxml")
     
     return soup
+
+
+
+
+def get_label_dictionary(ticker, accession_number):
+    cik = get_cik_matching_ticker(ticker)
+    headers = {"User-Agent": "russ@sunriseanalysis.com"}
+    base_url = f"https://www.sec.gov/Archives/edgar/data/{cik}/{accession_number}"
+    requested_content = requests.get(base_url, headers=headers).content.decode("utf-8")
+    filing = pd.read_html(requested_content)
+    try:
+        label_link = filter_accession_number_index_page(filing[0], "Name", "_lab.xml")
+    except:
+        return None
+    label_link = f"{base_url}/{label_link[0]}"
+    label_content = requests.get(label_link, headers=headers).content
+    tree_lab = etree.fromstring(label_content)
+    namespaces = tree_lab.nsmap
+    label_dictionary = {}
+    for label in tree_lab.xpath("//link:label", namespaces=namespaces):
+        gaap_fact = label.get("{http://www.w3.org/1999/xlink}label", None).split(
+            "_", 1
+        )[-1]
+        human_readable_label = label.text
+        label_dictionary[gaap_fact] = human_readable_label
+    return label_dictionary
+
 
 
 
@@ -416,6 +451,13 @@ def form_statement_for_all_available_quarters(ticker, statement_name):
 
 
 
+def rename_statement(statement, label_dictionary):
+    statement.index = statement.index.map(lambda x: label_dictionary.get(x, x))
+    return statement
+
+
+
+
 """
 
 Helper functions for the main functions below
@@ -499,6 +541,7 @@ def print_links_to_desired_statment(ticker, statement_name):
             'consolidated statement of financial position',
             'consolidated statements of financial condition',
             'combined and consolidated balance sheet',
+            'condensed consolidated balance sheets',
             'consolidated balance sheets, as of december 31',
             'dow consolidated balance sheets',
             'consolidated balance sheets (unaudited)',
@@ -516,6 +559,7 @@ def print_links_to_desired_statment(ticker, statement_name):
             'consolidated statement of income',
             'consolidated income statements',
             'consolidated income statement',
+            'condensed consolidated statements of earnings',
             'consolidated results of operations',
             'consolidated statements of income (loss)',
             'consolidated statements of income - southern',
@@ -532,6 +576,7 @@ def print_links_to_desired_statment(ticker, statement_name):
             'consolidated statement of cash flow',
             'consolidated cash flows statements',
             'consolidated cash flow statements',
+            'condensed consolidated statements of cash flows',
             'consolidated statements of cash flows (unaudited)',
             'consolidated statements of cash flows - southern',
         ]
@@ -599,79 +644,18 @@ functions that do not work yet but are in progress
 
 
 
-
-def create_many_to_one_name_mapping_to_statement(soup: BeautifulSoup) -> dict:
-    """
-    Modified to create a many-to-one dictionary. still need to implement
-    """
-    column_name_mapping = defaultdict(list)
-    for row in soup.select("tr.re, tr.ro, tr.reu, tr.rou"):
-        onclick_attr = row.select_one("td.pl a, td.pl.custom a")["onclick"]
-        column_title = onclick_attr.split("defref_")[-1].split("',")[0]
-        displayed_name = row.select_one("td.pl a, td.pl.custom a").text.strip()
-        displayed_name = keep_letters_and_numbers_only_in_string(displayed_name).lower()
-        column_name_mapping[displayed_name].append(column_title)
-    return column_name_mapping
-
-
-
-
-def rename_df_columns_using_mapping(
-    df: pd.DataFrame, column_name_mapping: dict
-) -> pd.DataFrame:
-    """
-    Rename columns in the DataFrame using the many-to-one mapping dictionary.
-
-    Parameters:
-    - df (pd.DataFrame): The input DataFrame.
-    - column_name_mapping (dict): The many-to-one mapping dictionary.
-
-    Returns:
-    - pd.DataFrame: DataFrame with renamed columns.
-    """
-    # Create a reverse mapping from internal column title to displayed name
-    reverse_mapping = {
-        col: disp_name
-        for disp_name, cols in column_name_mapping.items()
-        for col in cols
-    }
-    # Rename columns in the DataFrame
-    df = df.rename(columns=reverse_mapping)
-
-    return df
-
-
-
-
-def create_column_name_mapping_to_statement(soup: BeautifulSoup) -> dict:
-    """
-    Create a dictionary that maps internal column titles to displayed names.
-    
-    Parameters:
-    - soup (BeautifulSoup): The HTML soup object containing the balance_sheet.
-    
-    Returns:
-    - dict: Dictionary mapping internal column titles to displayed names.
-    """
-    column_name_mapping = {}
-    
-    # Iterate through each row in the balance_sheet table
-    for row in soup.select("tr.re, tr.ro, tr.reu, tr.rou"):
-        
-        # Extract the 'onclick' attribute to get the internal column title
-        onclick_attr = row.select_one("td.pl a, td.pl.custom a")["onclick"]
-        column_title = onclick_attr.split("defref_")[-1].split("',")[0]
-        
-        # Extract the displayed name from the table cell
-        displayed_name = row.select_one("td.pl a, td.pl.custom a").text.strip()
-        displayed_name = keep_letters_and_numbers_only_in_string(displayed_name)
-        # Add to the dictionary
-        column_name_mapping[column_title] = displayed_name
-    
-    return column_name_mapping
-
-
 def get_statement_using_pandas(ticker, accession_number, statement_name):
         soup = get_statement_soup(ticker, accession_number, statement_name)
         data = pd.read_html(str(soup))[0]
         return data
+
+
+def rename_with_all_statement_labels(statement, ticker):
+    accession_num_series = get_10K_accessionNumbers_for_ticker(ticker)
+    for accession_num in accession_num_series:
+        label_dict = get_label_dictionary(ticker, accession_num)
+        if label_dict == None:
+            break
+        statement = rename_statement(statement, label_dict)
+        print("Renamed with accession number: " + accession_num)
+    return statement

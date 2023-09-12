@@ -458,6 +458,22 @@ def rename_statement(statement, label_dictionary):
 
 
 
+def create_simple_statement(statement, mapping):
+    statement = statement.T
+    new_statement = pd.DataFrame(index=statement.index, columns=mapping.keys())
+    for common_name, gaap_names in mapping.items():
+        for gaap_name in gaap_names:
+            if gaap_name in statement.columns:
+                if new_statement[common_name].isnull().all():
+                    new_statement[common_name] = statement[gaap_name]
+                else:
+                    new_statement[common_name].fillna(statement[gaap_name], inplace=True)
+    
+    return new_statement
+
+
+
+
 """
 
 Helper functions for the main functions below

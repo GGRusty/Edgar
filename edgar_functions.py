@@ -474,6 +474,71 @@ def create_simple_statement(statement, mapping):
 
 
 
+def create_scorecard_from_simple_statements(income_sheet, balance_sheet, cash_flow_sheet):
+    scorecard = pd.DataFrame()
+    scorecard['Net Revenue'] = income_sheet['Net Revenue']
+    scorecard['COGS'] = income_sheet['Cost of Goods Sold']
+    scorecard['Gross Profit'] = income_sheet['Gross Profit']
+    scorecard['SG&A'] = income_sheet['SG&A']
+    scorecard['Operating Expenses'] = income_sheet['SG&A']
+    scorecard['Operating Income'] = income_sheet['Operating Income']
+    scorecard['Interest Expense'] = income_sheet['Interest Expense']
+    scorecard['EBT'] = income_sheet['EBT']
+    scorecard['Taxes'] = income_sheet['Taxes']
+    scorecard['Tax Rate'] = scorecard['Taxes'] / scorecard['EBT']
+    scorecard['Net Income'] = income_sheet['Net income']
+    scorecard['EPS'] = income_sheet['EPS']
+    scorecard['EPS Diluted'] = income_sheet['EPS Diluted']
+    scorecard['EBITDA'] = income_sheet['EBT'] + income_sheet['Interest Expense'] + cash_flow_sheet['Depreciation and Amortization']
+    scorecard['Dividend per Share(diluted)'] = (-cash_flow_sheet['Payment of Dividends']) / income_sheet['Weighted Average Shares Diluted']
+    scorecard['Dividend Payout Ratio'] = scorecard['Dividend per Share(diluted)'] / scorecard['EPS Diluted']
+    scorecard['Cash'] = balance_sheet['Cash']
+    scorecard['Accounts Receivable'] = balance_sheet['Accounts Receivable']
+    scorecard['Inventory'] = balance_sheet['Inventory']
+    scorecard['Other Current Assets'] = balance_sheet['Other Current Assets']
+    scorecard['Total Current Assets'] = balance_sheet['Total Current Assets']
+    scorecard['Property, Plant & Equipment, Net'] = balance_sheet['Property, Plant, and Equipment']
+    scorecard['Goodwill'] = balance_sheet['Goodwill']
+    scorecard['Total Assets'] = balance_sheet['Total Assets']
+    scorecard['Accrued Expenses'] = balance_sheet['Accrued Expenses']
+    scorecard['Deferred Revenue'] = balance_sheet['Deferred Revenue']
+    scorecard['Income Tax Payable'] = balance_sheet['Income Taxes Payable']
+    scorecard['Operating Lease Liability'] = balance_sheet['Operating Lease Liability']
+    scorecard['Other Current Liabilities'] = balance_sheet['Other Current Liabilities']
+    scorecard['Accounts Payable'] = balance_sheet['Accounts Payable']
+    scorecard['Total Current Liabilities'] = balance_sheet['Total Current Liabilities']
+    scorecard['Deffered Lease Incentives'] = balance_sheet['Deffered Lease Incentive']
+    scorecard['Long Term Lease Liability'] = balance_sheet['Long Term Lease Liability']
+    scorecard['Other Long Term Liabilities'] = balance_sheet['Other Long Term Liabilities']
+    scorecard['Total Liabilities'] = balance_sheet['Total Liabilities']
+    scorecard['Equity'] = balance_sheet['Total Stockholders Equity']
+    scorecard['Total Liabilities and Equity'] = balance_sheet['Total Liabilities and Stockholders Equity']
+    scorecard['Book Value per Share'] = balance_sheet['Total Stockholders Equity'] / income_sheet['Weighted Average Shares Diluted']
+    scorecard['Operating Cash Flow'] = cash_flow_sheet['Net Cash Provided by Operating Activities']
+    scorecard['OCF/NI'] = scorecard['Operating Cash Flow'] / scorecard['Net Income']
+    scorecard['Depreciation & Amortization'] = cash_flow_sheet['Depreciation and Amortization']
+    scorecard['Capital Expenditure'] = -cash_flow_sheet['Purchase of Property, Plant, and Equipment']
+    scorecard['Free Cash Flow'] = scorecard['Operating Cash Flow'] + scorecard['Capital Expenditure']
+    scorecard['Capex/Depreciation'] = scorecard['Capital Expenditure'] / scorecard['Depreciation & Amortization']
+    scorecard['Dividends'] = -cash_flow_sheet['Payment of Dividends']
+    scorecard['Stock Repurchase'] = -cash_flow_sheet['Repurchases of Common Stock']
+    scorecard['ROA'] = scorecard['Net Income'] / scorecard['Total Assets']
+    scorecard['ROE'] = scorecard['Net Income'] / scorecard['Equity']
+    scorecard['Profit Margin'] = scorecard['Net Income'] / scorecard['Net Revenue']
+    scorecard['Asset Turnover'] = scorecard['Net Revenue'] / scorecard['Total Assets']
+    scorecard['Current Ratio'] = scorecard['Total Current Assets'] / scorecard['Total Current Liabilities']
+    scorecard['Equity Multiplier'] = scorecard['Total Assets'] / scorecard['Equity']
+    scorecard['Net Working Capital'] = scorecard['Total Current Assets'] - scorecard['Total Current Liabilities']
+    scorecard['Debt to Equity Ratio'] = scorecard['Total Liabilities'] / scorecard['Equity']
+    scorecard['Days of Sales Outstanding'] = (scorecard['Accounts Receivable'] / scorecard['Net Revenue']) * 365
+    scorecard['Days of Inventory on Hand'] = (scorecard['Inventory'] / scorecard['COGS']) * 365
+    scorecard['Payables Period'] = (scorecard['Accounts Payable'] / scorecard['COGS']) * 365
+    scorecard['Cash Cycle'] = scorecard['Days of Sales Outstanding'] + scorecard['Days of Inventory on Hand'] - scorecard['Payables Period']
+    return scorecard
+
+
+
+
 """
 
 Helper functions for the main functions below

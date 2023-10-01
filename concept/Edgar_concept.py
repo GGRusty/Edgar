@@ -28,8 +28,12 @@ def get_cik(ticker):
 def get_concept_data(ticker, concept, headers):
     cik = get_cik(ticker)
     # Fetches the concept data and converts it into a DataFrame
-    concept_url = f"https://data.sec.gov/api/xbrl/companyconcept/CIK{cik}/us-gaap/{concept}.json"
-    concept_df = pd.DataFrame.from_dict(requests.get(concept_url, headers=headers).json())
+    concept_url = (
+        f"https://data.sec.gov/api/xbrl/companyconcept/CIK{cik}/us-gaap/{concept}.json"
+    )
+    concept_df = pd.DataFrame.from_dict(
+        requests.get(concept_url, headers=headers).json()
+    )
     return concept_df
 
 
@@ -53,8 +57,8 @@ def map_to_quarter(end_date, end_month):
         return 3
     else:  # 9, 10, 11
         return 4
-    
-    
+
+
 # Define a helper function to fill the quarter column
 def fill_quarter(row, df):
     if pd.isnull(row["quarter"]):
@@ -124,9 +128,11 @@ def process_data(df):
     df = df.drop(columns=["time_delta", "filed", "form", "fy", "fp", "accn"])
     df = df.dropna(subset=["frame"])
     df = df.reset_index(drop=True)
-    end_month = annual_data.iloc[0]["end"].month 
+    end_month = annual_data.iloc[0]["end"].month
     df["quarter"] = df["end"].apply(lambda x: map_to_quarter(x, end_month))
-    start_year = int(df["frame"].min()[2:6])  # extract start year from the minimum frame
+    start_year = int(
+        df["frame"].min()[2:6]
+    )  # extract start year from the minimum frame
     end_year = int(df["frame"].max()[2:6])  # extract end year from the maximum frame
     frames = [
         f"CY{year}Q{quarter}"
@@ -148,7 +154,9 @@ def process_data(df):
     quarterly_data.loc[quarterly_data["start"].isna(), "start"] = quarterly_data[
         "prev_end"
     ] + pd.Timedelta(days=1)
-    quarterly_data.loc[quarterly_data["end"].isna(), "end"] = quarterly_data["next_start"] - pd.Timedelta(days=1)
+    quarterly_data.loc[quarterly_data["end"].isna(), "end"] = quarterly_data[
+        "next_start"
+    ] - pd.Timedelta(days=1)
 
     # Drop the 'next_start' and 'prev_end' columns as they are no longer needed
     quarterly_data.drop(["next_start", "prev_end"], axis=1, inplace=True)
@@ -195,6 +203,7 @@ def process_data(df):
 def get_data_point(year, quarter):
     return quarterly_data.loc[(year, quarter)]
 
+
 headers = {"User-Agent": "russ@sunriseanalysis.com"}
 
 ticker = "AAPL"
@@ -209,5 +218,3 @@ data = get_data_point(2022, 4)
 print(annual_data)
 print(quarterly_data)
 print(data)
-
-

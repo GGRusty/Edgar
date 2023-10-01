@@ -296,7 +296,7 @@ def get_label_dictionary(ticker, accession_number):
         return None
     label_link = f"{base_url}/{label_link[0]}"
     label_content = requests.get(label_link, headers=headers).content
-    tree_lab = etree.fromstring(label_content)
+    tree_lab = etree.fromstring(label_content, parser=etree.XMLParser(recover=True))
     namespaces = tree_lab.nsmap
     label_dictionary = {}
     for label in tree_lab.xpath("//link:label", namespaces=namespaces):
@@ -409,7 +409,7 @@ def process_one_statement(ticker, accession_number, statement_name):
             pass
         else:
             return df
- 
+        
       
 
 
@@ -570,10 +570,10 @@ def retrieve_balance_income_cf_and_store_as_CSV(ticker, blank: bool = True):
 )
     if blank == True:
         all_three_statements = all_three_statements.replace(["None", np.NaN], "")
-    save_dataframe_to_csv(cash_flow_sheet, ticker, "cash_flow_statement", "annual")
-    save_dataframe_to_csv(balance_sheet, ticker, "balance_sheet", "annual")
-    save_dataframe_to_csv(earnings_sheet, ticker, "income_statement", "annual")
-    save_dataframe_to_csv(all_three_statements, ticker, "all_three_main_statements", "annual")
+    save_dataframe_to_csv(cash_flow_sheet, "results", ticker, "cash_flow_statement", "annual")
+    save_dataframe_to_csv(balance_sheet, "results", ticker,"balance_sheet", "annual")
+    save_dataframe_to_csv(earnings_sheet, "results", ticker, "income_statement", "annual")
+    save_dataframe_to_csv(all_three_statements, "results", ticker, "all_three_main_statements", "annual")
     return all_three_statements
 
 

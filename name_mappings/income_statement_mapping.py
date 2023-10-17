@@ -12,6 +12,17 @@ income_mapping = {
         "msft_SalesRevenueServicesAndOtherNet",
         "us-gaap_SalesRevenueServicesNet",
     ],
+    "Investment and Derivative Revenue": [
+        "us-gaap_NonoperatingGainsLosses",
+    ],
+    "Investment Revenue": [
+        "us-gaap_GainLossOnInvestments",
+        "us-gaap_GainLossOnInvestmentsExcludingOtherThanTemporaryImpairments",
+    ],
+    "Derivative Revenue": ["us-gaap_GainLossOnDerivativeInstrumentsNetPretax"],
+    "Permanent Impairment of Investments": [
+        "us-gaap_OtherThanTemporaryImpairmentLossesInvestmentsPortionRecognizedInEarningsNet"
+    ],
     # Cost of Revenue
     "COST OF REVENUE": ["us-gaap_CostOfRevenueAbstract"],
     "Cost of Revenue": [
@@ -30,7 +41,16 @@ income_mapping = {
         "us-gaap_AmortizationOfIntangibleAssets",
         "abt_AmortizationOfIntangibleAssetsExcludingDiscontinuedOperations",
     ],
+    "Goodwill and Intangible Asset Impairment": [
+        "us-gaap_GoodwillAndIntangibleAssetImpairment"
+    ],
     "Gross Profit": ["us-gaap_GrossProfit"],
+    "Other Revenue": [
+        "us-gaap_OtherIncome",
+    ],
+    "Other Finanacial Products Revenue": [
+        "us-gaap_RevenueOtherFinancialServices",
+    ],
     # Operating Expenses
     "OPERATING EXPENSES": [
         "us-gaap_OperatingExpensesAbstract",
@@ -50,9 +70,11 @@ income_mapping = {
         "us-gaap_OtherOperatingIncomeExpenseNet",
         "us-gaap_OtherExpenses",
         "us-gaap_OtherCostAndExpenseOperating",
+        "us-gaap_OtherFinancialServicesCosts",
     ],
     "Operating Expenses": ["us-gaap_OperatingExpenses", "us-gaap_CostsAndExpenses"],
     "Operating Income": ["us-gaap_OperatingIncomeLoss"],
+    "NON-OPERATING": ["us-gaap_NonoperatingIncomeExpenseAbstract"],
     "Non-Operating Income": ["us-gaap_NonoperatingIncomeExpense"],
     "Interest Expense": [
         "us-gaap_InterestIncomeExpenseNonoperatingNet",
@@ -60,7 +82,10 @@ income_mapping = {
         "wsm_NetInterestIncomeExpense",
         "us-gaap_InterestExpense",
     ],
-    "Interest Income": ["us-gaap_InvestmentIncomeInterest"],
+    "Interest Income": [
+        "us-gaap_InvestmentIncomeInterest",
+        "us-gaap_InvestmentIncomeInterestAndDividend",
+    ],
     "Equity Investemnts Income": ["us-gaap_IncomeLossFromEquityMethodInvestments"],
     "Net Foreign Currency Exchange Gain": [
         "us-gaap_ForeignCurrencyTransactionGainLossBeforeTax"
@@ -76,7 +101,9 @@ income_mapping = {
     "Other Expense Non-Operating": ["us-gaap_OtherNonoperatingIncomeExpense"],
     "EBT": [
         "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
-        "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+    ],
+    "EBT and equity investments": [
+        "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments"
     ],
     "Taxes": ["us-gaap_IncomeTaxExpenseBenefit"],
     "Net Income Continuous Operations": [
@@ -100,7 +127,10 @@ income_mapping = {
     "EPS Discont. Operations": [
         "us-gaap_IncomeLossFromDiscontinuedOperationsNetOfTaxPerBasicShare"
     ],
-    "EPS": ["us-gaap_EarningsPerShareBasic", "us-gaap_EarningsPerShareBasicAndDiluted"],
+    "EPS": [
+        "us-gaap_EarningsPerShareBasic",
+        "us-gaap_EarningsPerShareBasicAndDiluted",
+    ],  # have to change BRK-B becuase it is using the brk-a eps
     "EPS Diluted Cont. Operations": [
         "us-gaap_IncomeLossFromContinuingOperationsPerDilutedShare"
     ],
@@ -135,11 +165,17 @@ income_mapping = {
     "Leasing Revenue": [
         "tsla_AutomotiveLeasing",
         "us-gaap_OperatingLeasesIncomeStatementLeaseRevenue",
+        "us-gaap_OperatingLeaseLeaseIncome",
     ],
     "Service and other Revenue": ["tsla_SalesRevenueServicesAndOtherNet"],
     "Total Automotive Revenue": [
         "tsla_AutomotiveRevenues",
         "tsla_SalesRevenueAutomotive",
+    ],
+    "Premiums Revenue": ["us-gaap_PremiumsEarnedNet"],
+    "Insurance Losses and Loss Adjustment Expenses": [
+        "us-gaap_LiabilityForUnpaidClaimsAndClaimsAdjustmentExpenseIncurredClaims1",
+        "us-gaap_IncurredClaimsPropertyCasualtyAndLiability",
     ],
     "Cost of Automotive Revenue": ["tsla_AutomotiveSales"],
     "Cost of Leased Equipment": [

@@ -7,6 +7,8 @@ import pandas as pd
 from lxml import etree
 from bs4 import BeautifulSoup
 
+pd.set_option("display.max_rows", 500)
+
 headers = {"User-Agent": "russ@sunriseanalysis.com"}
 
 

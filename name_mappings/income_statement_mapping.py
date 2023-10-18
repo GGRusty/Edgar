@@ -6,6 +6,7 @@ income_mapping = {
         "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
         "us-gaap_SalesRevenueNet",
         "us-gaap_Revenues",
+        "xom_TotalRevenuesAndOtherIncome",
     ],
     "Goods Revenue": ["us-gaap_SalesRevenueGoodsNet"],
     "Service Revenue": [
@@ -18,10 +19,19 @@ income_mapping = {
     "Investment Revenue": [
         "us-gaap_GainLossOnInvestments",
         "us-gaap_GainLossOnInvestmentsExcludingOtherThanTemporaryImpairments",
+        "us-gaap_InvestmentIncomeNet",
     ],
     "Derivative Revenue": ["us-gaap_GainLossOnDerivativeInstrumentsNetPretax"],
+    "Other Revenue": [
+        "us-gaap_OtherIncome",
+        "us-gaap_OtherSalesRevenueNet",
+    ],
+    "Other Finanacial Products Revenue": [
+        "us-gaap_RevenueOtherFinancialServices",
+    ],
     "Permanent Impairment of Investments": [
-        "us-gaap_OtherThanTemporaryImpairmentLossesInvestmentsPortionRecognizedInEarningsNet"
+        "us-gaap_OtherThanTemporaryImpairmentLossesInvestmentsPortionRecognizedInEarningsNet",
+        "us-gaap_ImpairmentOfIntangibleAssetsIndefinitelivedExcludingGoodwill",
     ],
     # Cost of Revenue
     "COST OF REVENUE": ["us-gaap_CostOfRevenueAbstract"],
@@ -36,21 +46,24 @@ income_mapping = {
     "Cost of Services": ["msft_CostOfServicesAndOther"],
     "Fulfillment Expense": ["amzn_FulfillmentExpense"],
     "Tech and Content Expense": ["amzn_TechnologyAndContentExpense"],
-    "Marketing Expense": ["us-gaap_MarketingExpense"],
+    "Marketing Expense": [
+        "us-gaap_MarketingExpense",
+        "us-gaap_MarketingAndAdvertisingExpense",
+    ],
+    "Networking and Processing Expense": [
+        "us-gaap_CommunicationsAndInformationTechnology"
+    ],
     "Amortization of Intangible Assets": [
         "us-gaap_AmortizationOfIntangibleAssets",
         "abt_AmortizationOfIntangibleAssetsExcludingDiscontinuedOperations",
     ],
+    "Labor Expense": ["us-gaap_LaborAndRelatedExpense"],
+    "Professional Fees": ["us-gaap_ProfessionalFees"],
+    "Exploration Expense": ["us-gaap_ExplorationExpense"],
     "Goodwill and Intangible Asset Impairment": [
         "us-gaap_GoodwillAndIntangibleAssetImpairment"
     ],
     "Gross Profit": ["us-gaap_GrossProfit"],
-    "Other Revenue": [
-        "us-gaap_OtherIncome",
-    ],
-    "Other Finanacial Products Revenue": [
-        "us-gaap_RevenueOtherFinancialServices",
-    ],
     # Operating Expenses
     "OPERATING EXPENSES": [
         "us-gaap_OperatingExpensesAbstract",
@@ -60,6 +73,7 @@ income_mapping = {
         "us-gaap_ResearchAndDevelopmentExpense",
         "us-gaap_ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost",
     ],
+    "Research and Development in Process": ["us-gaap_ResearchAndDevelopmentInProcess"],
     "Acquired In Process R&D": [
         "us-gaap_ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff"
     ],
@@ -72,21 +86,26 @@ income_mapping = {
         "us-gaap_OtherCostAndExpenseOperating",
         "us-gaap_OtherFinancialServicesCosts",
     ],
+    "Medical Costs": ["us-gaap_PolicyholderBenefitsAndClaimsIncurredHealthCare"],
     "Operating Expenses": ["us-gaap_OperatingExpenses", "us-gaap_CostsAndExpenses"],
     "Operating Income": ["us-gaap_OperatingIncomeLoss"],
     "NON-OPERATING": ["us-gaap_NonoperatingIncomeExpenseAbstract"],
     "Non-Operating Income": ["us-gaap_NonoperatingIncomeExpense"],
     "Interest Expense": [
-        "us-gaap_InterestIncomeExpenseNonoperatingNet",
-        "wsm_NetInterestIncomeAndExpense",
-        "wsm_NetInterestIncomeExpense",
         "us-gaap_InterestExpense",
     ],
     "Interest Income": [
+        "wsm_NetInterestIncomeAndExpense",
+        "wsm_NetInterestIncomeExpense",
+        "us-gaap_InterestIncomeExpenseNonoperatingNet",
         "us-gaap_InvestmentIncomeInterest",
         "us-gaap_InvestmentIncomeInterestAndDividend",
+        "us-gaap_InterestIncomeExpenseNet",
     ],
-    "Equity Investemnts Income": ["us-gaap_IncomeLossFromEquityMethodInvestments"],
+    "Equity Investemnts Income": [
+        "us-gaap_IncomeLossFromEquityMethodInvestments",
+        "us-gaap_EquitySecuritiesFvNiGainLoss",
+    ],
     "Net Foreign Currency Exchange Gain": [
         "us-gaap_ForeignCurrencyTransactionGainLossBeforeTax"
     ],
@@ -97,8 +116,20 @@ income_mapping = {
         "nvda_BusinessCombinationAdvancedConsiderationWrittenOff",
         "us-gaap_LossContingencyLossInPeriod",
         "tsla_RestructuringAndOtherExpenses",
+        "us-gaap_RestructuringSettlementAndImpairmentProvisions",
+        "us-gaap_LossContingencyAccrualCarryingValueProvision",
+        "us-gaap_AssetImpairmentCharges",
     ],
+    "Contract Termination Costs": ["us-gaap_LossOnContractTermination"],
+    "Depreciation and Amortization": [
+        "us-gaap_DepreciationAndAmortization",
+        "us-gaap_DepreciationDepletionAndAmortization",
+    ],
+    "Litigation Settlement Expense": ["us-gaap_LitigationSettlementExpense"],
     "Other Expense Non-Operating": ["us-gaap_OtherNonoperatingIncomeExpense"],
+    "Non Service Pension Expense": [
+        "us-gaap_NetPeriodicDefinedBenefitsExpenseReversalOfExpenseExcludingServiceCostComponent"
+    ],
     "EBT": [
         "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
     ],
@@ -106,6 +137,8 @@ income_mapping = {
         "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments"
     ],
     "Taxes": ["us-gaap_IncomeTaxExpenseBenefit"],
+    "Other Taxes": ["us-gaap_TaxesOther"],
+    "Sales Tax": ["us-gaap_ExciseAndSalesTaxes"],
     "Net Income Continuous Operations": [
         "us-gaap_ProfitLoss",
         "us-gaap_IncomeLossFromContinuingOperationsIncludingPortionAttributableToNoncontrollingInterest",
@@ -150,6 +183,9 @@ income_mapping = {
     "Dilutive Common Stock Options": [
         "us-gaap_IncrementalCommonSharesAttributableToShareBasedPaymentArrangements"
     ],
+    "Dilutive effect of common share equivalents": [
+        "us-gaap_WeightedAverageNumberDilutedSharesOutstandingAdjustment"
+    ],
     "Weighted Average Shares Diluted": [
         "us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding"
     ],
@@ -158,6 +194,9 @@ income_mapping = {
     ],
     "Declared Dividends per Share": ["us-gaap_CommonStockDividendsPerShareDeclared"],
     "Common Dividend per Share Paid": ["us-gaap_CommonStockDividendsPerShareCashPaid"],
+    "Preferred Dividends paid": [
+        "us-gaap_PreferredStockDividendsIncomeStatementImpact"
+    ],
     # Special Purpose Items
     "Automotive Sales Revenue": ["tsla_AutomotiveSalesRevenue"],
     "Energy Services": ["us-gaap_SalesRevenueEnergyServices"],
@@ -189,4 +228,10 @@ income_mapping = {
     ],
     "Cost of Service and Other Revenue": ["tsla_CostOfServicesAndOther"],
     "Buyout of Noncontrolling Interest": ["tsla_BuyOutOfNoncontrollingInterest"],
+    "Share Based Compensation Expense": [
+        "us-gaap_AllocatedShareBasedCompensationExpense"
+    ],
+    "Undistributed Earnings Loss Allocated to Participating Securities": [
+        "us-gaap_UndistributedEarningsLossAllocatedToParticipatingSecuritiesBasic"
+    ],
 }

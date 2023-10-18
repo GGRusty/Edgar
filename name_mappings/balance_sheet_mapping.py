@@ -2,7 +2,10 @@ balance_mapping = {
     # Current Assets
     "ASSETS": ["us-gaap_AssetsAbstract"],
     "CURRENT ASSETS": ["us-gaap_AssetsCurrentAbstract"],
-    "Cash": ["us-gaap_CashAndCashEquivalentsAtCarryingValue"],
+    "Cash": [
+        "us-gaap_CashAndCashEquivalentsAtCarryingValue",
+        "us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+    ],
     "Restricted Cash": [
         "us-gaap_RestrictedCashCurrent",
         "us-gaap_RestrictedCashAndInvestmentsCurrent",
@@ -12,6 +15,8 @@ balance_mapping = {
         "us-gaap_AvailableForSaleSecuritiesCurrent",
         "us-gaap_ShortTermInvestments",
         "us-gaap_AvailableForSaleSecurities",
+        "us-gaap_AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+        "us-gaap_Investments",
     ],
     "Marketable Debt Securities": [
         "us-gaap_AvailableForSaleSecuritiesDebtSecurities",
@@ -21,24 +26,52 @@ balance_mapping = {
         "us-gaap_EquitySecuritiesFvNi",
         "us-gaap_AvailableForSaleSecuritiesEquitySecurities",
     ],
-    "Equity Method Investments": ["us-gaap_EquityMethodInvestments"],
+    "Equity Method Investments": [
+        "us-gaap_EquityMethodInvestments",
+        "us-gaap_EquitySecuritiesWithoutReadilyDeterminableFairValueAmount",
+    ],
     "Loans and Finance Receivables": [
         "us-gaap_NotesReceivableNet",
         "us-gaap_LoansAndLeasesReceivableNetReportedAmount",
+    ],
+    "Trading Securities": [
+        "us-gaap_TradingSecurities",
+        "us-gaap_TradingSecuritiesCurrent",
     ],
     "Other Investments": ["us-gaap_OtherInvestments"],
     "Regulatory Assets": ["us-gaap_RegulatoryAssets"],
     "Cash and Cash Equivalents and ST Investments": [
         "us-gaap_CashCashEquivalentsAndShortTermInvestments"
     ],
+    "Cash and Cash Equivalents Including Discontinued operations": [
+        "us-gaap_CashAndCashEquivalentsAtCarryingValueIncludingDiscontinuedOperations"
+    ],
     "Accounts Receivable": [
         "us-gaap_ReceivablesNetCurrent",
         "us-gaap_AccountsReceivableNetCurrent",
         "us-gaap_AccountsAndOtherReceivablesNetCurrent",
     ],
-    "Other Receivables": ["us-gaap_PremiumsAndOtherReceivablesNet"],
+    "Other Receivables": [
+        "us-gaap_PremiumsAndOtherReceivablesNet",
+        "us-gaap_OtherReceivablesNetCurrent",
+        "us-gaap_OtherReceivables",
+    ],
     "Income Tax Receivable": ["us-gaap_IncomeTaxesReceivable"],
     "Inventory": ["us-gaap_InventoryNet"],
+    "Energy Inventory": ["us-gaap_EnergyRelatedInventory"],
+    "Materials and Supplies Inventory": [
+        "us-gaap_InventoryPartsAndComponentsNetOfReserves",
+        "us-gaap_InventoryRawMaterialsAndSuppliesNetOfReserves",
+        "us-gaap_InventoryRawMaterialsAndSupplies",
+    ],
+    "Inventory Work in Progress": [
+        "us-gaap_InventoryWorkInProcessNetOfReserves",
+        "us-gaap_InventoryWorkInProcess",
+    ],
+    "Finished Goods Inventory": [
+        "us-gaap_InventoryFinishedGoodsNetOfReserves",
+        "us-gaap_InventoryFinishedGoods",
+    ],
     "Prepaid Expenses": [
         "us-gaap_PrepaidExpenseCurrent",
         "us-gaap_NontradeReceivablesCurrent",
@@ -46,6 +79,7 @@ balance_mapping = {
     "Prepaid Expenses and Other Current Assets": [
         "us-gaap_PrepaidExpenseAndOtherAssets",
         "us-gaap_PrepaidExpenseAndOtherAssetsCurrent",
+        "us-gaap_OtherPrepaidExpenseCurrent",
     ],
     "Operating Lease Equipment": [
         "us-gaap_DeferredCostsLeasingNetNoncurrent",
@@ -53,6 +87,12 @@ balance_mapping = {
     ],
     "Solar Energy Systems": ["tsla_LeasedAssetsNet"],
     "Other Current Assets": ["us-gaap_OtherAssetsCurrent"],
+    "Assets Help for Sale": [
+        "us-gaap_AssetsHeldForSaleNotPartOfDisposalGroupCurrentOther"
+    ],
+    "Current Assets of Discontinued Operations": [
+        "us-gaap_AssetsOfDisposalGroupIncludingDiscontinuedOperationCurrent"
+    ],
     "Other Assets": ["us-gaap_OtherAssets"],
     "Total Current Assets": ["us-gaap_AssetsCurrent"],
     # Long Term Assets
@@ -60,6 +100,8 @@ balance_mapping = {
         "us-gaap_MarketableSecuritiesNoncurrent",
         "us-gaap_AvailableForSaleSecuritiesNoncurrent",
         "us-gaap_LongTermInvestments",
+        "us-gaap_LongTermInvestmentsAndReceivablesNet",
+        "us-gaap_AvailableForSaleSecuritiesDebtSecuritiesNoncurrent",
     ],
     "Long Term Non Marketable Securities": ["us-gaap_OtherLongTermInvestments"],
     "Property, Plant, and Equipment": [
@@ -72,7 +114,7 @@ balance_mapping = {
         "us-gaap_FiniteLivedIntangibleAssetsNet",
     ],
     "Operating Lease Right of Use Asset": ["us-gaap_OperatingLeaseRightOfUseAsset"],
-    "Deffered Income Tax Asset": [
+    "Deferred Income Tax Asset": [
         "us-gaap_DeferredIncomeTaxAssetsNet",
         "us-gaap_DeferredTaxAssetsNetNoncurrent",
         "us-gaap_DeferredTaxAssetsGrossNoncurrent",
@@ -83,6 +125,10 @@ balance_mapping = {
     ],
     "Other Long Term Assets": [
         "us-gaap_OtherAssetsNoncurrent",
+        "us-gaap_OtherAssetsMiscellaneousNoncurrent",
+    ],
+    "Noncurrent Assets of Discontinued Operations": [
+        "us-gaap_DisposalGroupIncludingDiscontinuedOperationAssetsNoncurrent"
     ],
     "Total Long Term Assets": ["us-gaap_AssetsNoncurrent"],
     "Total Assets": ["us-gaap_Assets"],
@@ -91,14 +137,19 @@ balance_mapping = {
     "LIABILITIES": ["us-gaap_LiabilitiesAbstract"],
     "Short Term Debt": ["us-gaap_ShortTermBorrowings"],
     "Convertible Debt": ["us-gaap_ConvertibleDebtCurrent"],
-    "Accounts Payable": ["us-gaap_AccountsPayableCurrent"],
+    "Accounts Payable": [
+        "us-gaap_AccountsPayableCurrent",
+        "us-gaap_AccountsPayableTradeCurrent",
+    ],
+    "Partners Payable": ["us-gaap_AccountsPayableOtherCurrent"],
     "Accrued Expenses": [
         "us-gaap_AccruedLiabilitiesCurrent",
         "amzn_AccruedLiabilitiesAndOtherCurrent",
         "tsla_AccruedAndOtherCurrentLiabilities",
     ],
     "Unpaid Losses and Loss Adjustment Expenses": [
-        "us-gaap_LiabilityForClaimsAndClaimsAdjustmentExpensePropertyCasualtyLiability"
+        "us-gaap_LiabilityForClaimsAndClaimsAdjustmentExpensePropertyCasualtyLiability",
+        "us-gaap_LiabilityForClaimsAndClaimsAdjustmentExpense",
     ],
     "Insurance benifit Liabilities": ["us-gaap_LiabilityForFuturePolicyBenefits"],
     "Unearned Premiums": ["us-gaap_UnearnedPremiums"],
@@ -123,13 +174,19 @@ balance_mapping = {
         "tsla_CustomerDepositsLiabilitiesCurrent",
         "us-gaap_CustomerDepositsCurrent",
         "us-gaap_CustomerAdvancesCurrent",
+        "us-gaap_DepositsAssetsCurrent",
     ],
     "Deferred Tax Assets Liabilities Net Current": [
         "us-gaap_DeferredTaxAssetsLiabilitiesNetCurrent",
         "us-gaap_DeferredTaxAssetsNetCurrent",
+        "us-gaap_DeferredIncomeTaxLiabilitiesNet",
     ],
     "Employee Related Liabilities": ["us-gaap_EmployeeRelatedLiabilitiesCurrent"],
-    "Income Taxes Payable": ["us-gaap_AccruedIncomeTaxesCurrent"],
+    "Dividends Payable Current": ["us-gaap_DividendsPayableCurrent"],
+    "Income Taxes Payable": [
+        "us-gaap_AccruedIncomeTaxesCurrent",
+        "us-gaap_TaxesPayableCurrent",
+    ],
     "Operating Lease Liability": ["us-gaap_OperatingLeaseLiabilityCurrent"],
     "Other Current Liabilities": ["us-gaap_OtherLiabilitiesCurrent"],
     "Commercial Paper": ["us-gaap_CommercialPaper"],
@@ -138,10 +195,13 @@ balance_mapping = {
         "us-gaap_LongTermDebtAndCapitalLeaseObligationsCurrent",
         "tsla_LongTermDebtAndFinanceLeasesCurrent",
     ],
+    "Current Liabilities of Discontinued Operations": [
+        "us-gaap_LiabilitiesOfDisposalGroupIncludingDiscontinuedOperationCurrent"
+    ],
     "Due to Related Parties Current": ["us-gaap_DueToRelatedPartiesCurrent"],
     "Total Current Liabilities": ["us-gaap_LiabilitiesCurrent"],
     # Long Term Liabilities
-    "Deffered Lease Incentive": [
+    "Deferred Lease Incentive": [
         "wsm_DeferredLeaseIncentivesLiabilityNoncurrent",
         "wsm_DeferredRentAndLeaseIncentivesLiabilityNoncurrent",
     ],
@@ -160,14 +220,22 @@ balance_mapping = {
         "us-gaap_OperatingLeaseLiabilityNoncurrent",
         "amzn_LeaseLiabilityNoncurrent",
     ],
-    "Deferred Income Tax": [
-        "us-gaap_DeferredIncomeTaxLiabilitiesNet",
+    "Deferred Income Tax Noncurrent": [
         "us-gaap_DeferredTaxLiabilitiesNoncurrent",
+        "us-gaap_DeferredTaxLiabilitiesGrossNoncurrent",
     ],
     "Other Long Term Liabilities": [
         "us-gaap_OtherLiabilitiesNoncurrent",
         "us-gaap_LiabilitiesOtherThanLongtermDebtNoncurrent",
     ],
+    "Long Term Liabilities of Discontinued Operations": [
+        "us-gaap_LiabilitiesOfDisposalGroupIncludingDiscontinuedOperationNoncurrent"
+    ],
+    "Long Term Pension Liabilities": [
+        "us-gaap_PensionAndOtherPostretirementDefinedBenefitPlansLiabilitiesNoncurrent",
+        "us-gaap_AccumulatedOtherComprehensiveIncomeLossDefinedBenefitPensionAndOtherPostretirementPlansNetOfTax",
+    ],
+    "Litigation Reserve": ["us-gaap_LitigationReserveCurrent"],
     "Accrued Income Taxes Noncurrent": ["us-gaap_AccruedIncomeTaxesNoncurrent"],
     "Long Term Debt": ["us-gaap_LongTermDebtNoncurrent", "us-gaap_LongTermDebt"],
     "Convertible Debt Noncurrent": ["us-gaap_ConvertibleDebtNoncurrent"],
@@ -192,7 +260,8 @@ balance_mapping = {
     ],
     "Due to Related Parties Noncurrent": ["us-gaap_DueToRelatedPartiesNoncurrent"],
     "Redeemable Noncontrolling Interest": [
-        "us-gaap_RedeemableNoncontrollingInterestEquityCarryingAmount"
+        "us-gaap_RedeemableNoncontrollingInterestEquityCarryingAmount",
+        "us-gaap_RedeemableNoncontrollingInterestEquityFairValue",
     ],
     # Stockholders Equity
     "STOCKHOLDERS EQUITY": [
@@ -209,8 +278,14 @@ balance_mapping = {
         "us-gaap_ConvertiblePreferredStockNonredeemableOrRedeemableIssuerOptionValue",
     ],
     "Preferred Stock Par Per Share": ["us-gaap_PreferredStockParOrStatedValuePerShare"],
+    "Common Stock Par Per Share": ["us-gaap_CommonStockParOrStatedValuePerShare"],
     "Common Stock": ["us-gaap_CommonStocksIncludingAdditionalPaidInCapital"],
     "Common Shares Authorized": ["us-gaap_CommonStockSharesAuthorized"],
+    "Common Shares Issued": ["us-gaap_CommonStockSharesIssued"],
+    "Common Shares Outstanding": ["us-gaap_CommonStockSharesOutstanding"],
+    "Common Stock Held in Employee Trust": [
+        "us-gaap_CommonStockSharesHeldInEmployeeTrust"
+    ],
     "Preferred Shares Authorized": ["us-gaap_PreferredStockSharesAuthorized"],
     "Preferred Stock Issued": ["us-gaap_PreferredStockSharesIssued"],
     "Preferred Stock Outstanding": ["us-gaap_PreferredStockSharesOutstanding"],
@@ -219,17 +294,30 @@ balance_mapping = {
         "us-gaap_AdditionalPaidInCapitalCommonStock",
     ],
     "Retained Earnings": ["us-gaap_RetainedEarningsAccumulatedDeficit"],
+    "Accumulated Other Comprehensive Income investments": [
+        "us-gaap_AccumulatedOtherComprehensiveIncomeLossAvailableForSaleSecuritiesAdjustmentNetOfTax"
+    ],
+    "Foreign Currency Translation Adjustment": [
+        "us-gaap_AccumulatedOtherComprehensiveIncomeLossForeignCurrencyTranslationAdjustmentNetOfTax",
+    ],
     "Accumulated Other Comprehensive Income(Loss)": [
         "us-gaap_AccumulatedOtherComprehensiveIncomeLossNetOfTax",
-        "us-gaap_AccumulatedOtherComprehensiveIncomeLossForeignCurrencyTranslationAdjustmentNetOfTax",
+    ],
+    "Accumulated OCI Derivatives": [
+        "us-gaap_AociLossCashFlowHedgeCumulativeGainLossAfterTax",
+        "us-gaap_AccumulatedOtherComprehensiveIncomeLossCumulativeChangesInNetGainLossFromCashFlowHedgesEffectNetOfTax",
     ],
     "Treasury Stock at Cost": [
         "us-gaap_TreasuryStockCommonValue",
         "us-gaap_TreasuryStockValue",
     ],
+    "Treasury Stock Shares": ["us-gaap_TreasuryStockShares"],
     "Minority Interest": ["us-gaap_MinorityInterest"],
     "Total Equity including Minority Interest": [
         "us-gaap_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
+    ],
+    "Stockholders Equity Before Treasury Stock": [
+        "us-gaap_StockholdersEquityBeforeTreasuryStock"
     ],
     "Total Stockholders Equity": ["us-gaap_StockholdersEquity"],
     "Total Liabilities and Stockholders Equity": [

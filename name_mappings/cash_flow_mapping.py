@@ -29,8 +29,14 @@ cash_mapping = {
         "us-gaap_GainLossOnSalesOfAssetsAndAssetImpairmentCharges",
         "us-gaap_AssetImpairmentCharges",
         "us-gaap_GainLossOnSaleOfPropertyPlantEquipment",
+        "us-gaap_CashDivestedFromDeconsolidation",
     ],
-    "Gain on Disposal/Impairment": ["us-gaap_GainLossOnDispositionOfAssets1"],
+    "Gain on Disposal/Impairment": [
+        "us-gaap_GainLossOnDispositionOfAssets1",
+        "us-gaap_DisposalGroupNotDiscontinuedOperationGainLossOnDisposal",
+        "us-gaap_DeconsolidationGainOrLossAmount",
+    ],
+    "Gain on Sale of Business": ["us-gaap_GainLossOnSaleOfBusiness"],
     "Amoritization of Deferred Lease Incentive": [
         "wsm_AmortizationOfDeferredLeaseIncentives",
         "us-gaap_AmortizationOfLeaseIncentives",
@@ -48,18 +54,28 @@ cash_mapping = {
     "Deferred Income Taxes": [
         "us-gaap_DeferredIncomeTaxExpenseBenefit",
         "us-gaap_DeferredIncomeTaxesAndTaxCredits",
+        "us-gaap_IncreaseDecreaseInDeferredIncomeTaxes",
     ],
     "Change in Fair Value of Contigent Liability": [
-        "us-gaap_BusinessCombinationContingentConsiderationArrangementsChangeInAmountOfContingentConsiderationLiability1"
+        "us-gaap_BusinessCombinationContingentConsiderationArrangementsChangeInAmountOfContingentConsiderationLiability1",
+        "us-gaap_NoncashOrPartNoncashAcquisitionValueOfLiabilitiesAssumed1",
     ],
     "Stock Based Compensation Expense": [
         "us-gaap_ShareBasedCompensation",
         "goog_NetProceedsPaymentsRelatedToStockBasedAwardActivities",
+        "us-gaap_IncreaseDecreaseInEmployeeRelatedLiabilities",
     ],
-    "Acquired in process R&D": ["abbv_UpfrontCostsRelatedToCollaborations"],
+    "Acquired in process R&D": [
+        "abbv_UpfrontCostsRelatedToCollaborations",
+        "us-gaap_PaymentsToAcquireInProcessResearchAndDevelopment",
+    ],
     "Other Charges Related to collaborations": [
         "abbv_OtherChargesRelatedToCollaborations"
     ],
+    "Pension benefits Expense excess of payments": [
+        "us-gaap_PensionAndOtherPostretirementBenefitsExpenseReversalOfExpenseNoncash"
+    ],
+    "Non Cash Pension Expense": ["us-gaap_NoncashContributionExpense"],
     "Gain on sale of Other Assets": [
         "us-gaap_GainLossOnSaleOfOtherAssets",
         "msft_GainLossOnInvestmentsAndDerivativeInstruments",
@@ -68,7 +84,10 @@ cash_mapping = {
         "nvda_GainsonSalesoflonglivedassetsandinvestment",
         "us-gaap_DebtAndEquitySecuritiesGainLoss",
         "tsla_GainLossOnDigitalAssets",
+        "us-gaap_GainLossOnSaleOfEquityInvestments",
     ],
+    "Gain on sale of Other Investments": ["us-gaap_GainLossOnSaleOfOtherInvestments"],
+    "increase in Trading Securities": ["us-gaap_IncreaseDecreaseInTradingSecurities"],
     "Non Cash Litigation Reserve Adjustment ": [
         "abbv_NonCashLitigationReserveAdjustmentsNetOfCashPayments"
     ],
@@ -86,14 +105,26 @@ cash_mapping = {
         "tsla_NoncashInterestIncomeExpenseAndOtherOperatingActivities"
     ],
     "Other Non Cash Operating Activities": ["us-gaap_OtherNoncashIncomeExpense"],
+    "Other Non Cash Expense": ["us-gaap_OtherNoncashExpense"],
     "Other Operating Activities": [
         "us-gaap_OtherOperatingActivitiesCashFlowStatement",
         "us-gaap_OtherOperatingIncomeExpenseNet",
+    ],
+    "Changes in Other Operating Capital": [
+        "us-gaap_IncreaseDecreaseInOtherOperatingCapitalNet"
     ],
     "Recognition of Deferred Revenue": ["us-gaap_RecognitionOfDeferredRevenue"],
     "Loss On early Extinguishment of Debt": [
         "us-gaap_GainsLossesOnExtinguishmentOfDebt"
     ],
+    "Fair Value Adjustments for Non-Marketable Securities": [
+        "us-gaap_EquitySecuritiesFvNiGainLoss"
+    ],
+    "Dividends Received greater than equity in earnings": [
+        "us-gaap_IncomeLossFromEquityMethodInvestmentsNetOfDividendsOrDistributions"
+    ],
+    "Provision for Doubtful Accounts": ["us-gaap_ProvisionForDoubtfulAccounts"],
+    "Restructuring Charges": ["us-gaap_RestructuringCharges"],
     # Operating Activities
     "CHANGES IN OPERATING CAPITAL": [
         "us-gaap_IncreaseDecreaseInOperatingCapitalAbstract"
@@ -103,16 +134,26 @@ cash_mapping = {
         "us-gaap_IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
     ],
     "Changes in Accounts Receivable": ["us-gaap_IncreaseDecreaseInAccountsReceivable"],
+    "Changes in Accounts Receivable and notes receivable": [
+        "us-gaap_IncreaseDecreaseInAccountsAndNotesReceivable"
+    ],
     "Changes in Other Receivables": ["us-gaap_IncreaseDecreaseInOtherReceivables"],
     "Changes in Inventory": ["us-gaap_IncreaseDecreaseInInventories"],
     "Changes in Prepaid Expenses and other assets": [
         "us-gaap_IncreaseDecreaseInPrepaidDeferredExpenseAndOtherAssets",
         "us-gaap_IncreaseDecreaseInOtherOperatingAssets",
         "nvda_PrepaidExpensesAndOtherCurrentAsset",
+        "us-gaap_IncreaseDecreaseInPrepaidExpense",
     ],
-    "Changes in Accounts Payable": ["us-gaap_IncreaseDecreaseInAccountsPayable"],
+    "Changes in Accounts Payable": [
+        "us-gaap_IncreaseDecreaseInAccountsPayable",
+        "us-gaap_IncreaseDecreaseInAccountsPayableTrade",
+    ],
     "Changes in Accounts Payable and Other Liabilities": [
         "us-gaap_IncreaseDecreaseInAccountsPayableAndAccruedLiabilities"
+    ],
+    "Changes in Other Accounts Payable": [
+        "us-gaap_IncreaseDecreaseInOtherAccountsPayable"
     ],
     "Changes in Accrued Expenses": [
         "us-gaap_IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
@@ -128,6 +169,17 @@ cash_mapping = {
     "Changes in Other Noncurrent Assets": [
         "us-gaap_IncreaseDecreaseInOtherNoncurrentAssets"
     ],
+    "Changes in Unpaid Losses and Loss Adjustment Expenses": [
+        "us-gaap_IncreaseDecreaseInLiabilityForClaimsAndClaimsAdjustmentExpenseReserve",
+        "us-gaap_IncreaseDecreaseInLossAndLossAdjustmentExpenseReserve",
+    ],
+    "Changes in Medical Costs Payable": [
+        "us-gaap_IncreaseDecreaseInHealthCareInsuranceLiabilities"
+    ],
+    "Changes in Unearned Premiums": ["us-gaap_IncreaseDecreaseInUnearnedPremiums"],
+    "Changes in Recivables and Originated loans": [
+        "us-gaap_IncreaseDecreaseInReceivables"
+    ],
     "Changes in Operating Lease Liability": [
         "us-gaap_IncreaseDecreaseInOperatingLeaseLiability",
         "wsm_IncreaseDecreaseInOperatingLeaseLiabilities",
@@ -139,6 +191,8 @@ cash_mapping = {
     "Changes in Customer Deposits": [
         "tsla_IncreaseDecreaseInContractWithCustomerLiabilityCustomerDeposits",
         "us-gaap_IncreaseDecreaseInDeferredRevenueAndCustomerAdvancesAndDeposits",
+        "us-gaap_IncreaseDecreaseInDeposits",
+        "us-gaap_IncreaseDecreaseInCustomerDeposits",
     ],
     "Changes in Other Current Liabilities": [
         "us-gaap_IncreaseDecreaseInOtherOperatingLiabilities",
@@ -152,6 +206,10 @@ cash_mapping = {
         "us-gaap_IncreaseDecreaseInAccruedIncomeTaxesPayable",
         "us-gaap_IncreaseDecreaseInIncomeTaxesPayableNetOfIncomeTaxesReceivable",
         "us-gaap_IncreaseDecreaseInIncomeTaxes",
+        "us-gaap_IncreaseDecreaseInAccruedTaxesPayable",
+    ],
+    "Changes in Income Taxes Receivable": [
+        "us-gaap_IncreaseDecreaseInIncomeTaxesReceivable"
     ],
     "Net Cash Provided by Operating Activities": [
         "us-gaap_NetCashProvidedByUsedInOperatingActivities",
@@ -166,6 +224,9 @@ cash_mapping = {
         "us-gaap_PaymentsToAcquireAvailableForSaleSecurities",
         "us-gaap_PaymentsToAcquireMarketableSecurities",
         "us-gaap_PaymentsToAcquireInvestments",
+        "us-gaap_PaymentsToAcquireShortTermInvestments",
+        "us-gaap_PaymentsForProceedsFromShortTermInvestments",
+        "us-gaap_PaymentsForProceedsFromInvestments",
     ],
     "Proceeds from maturity of Marketable Securities": [
         "us-gaap_ProceedsFromMaturitiesPrepaymentsAndCallsOfAvailableForSaleSecurities"
@@ -176,49 +237,72 @@ cash_mapping = {
         "us-gaap_ProceedsFromSalesOfAvailableForSaleSecuritiesDebt",
         "us-gaap_ProceedsFromSaleOfAvailableForSaleSecurities",
         "msft_ProceedsFromInvestments",
+        "us-gaap_ProceedsFromSaleOfAvailableForSaleSecuritiesEquity",
+        "us-gaap_ProceedsFromSaleOfShortTermInvestments",
     ],
-    "Proceeds from Sales and Matureties of Marketable Securities": [
+    "Proceeds from Sales and Maturities of Marketable Securities": [
         "us-gaap_ProceedsFromSaleMaturityAndCollectionsOfInvestments",
         "msft_ProceedsFromInvestments",
         "us-gaap_ProceedsFromSaleAndMaturityOfMarketableSecurities",
         "us-gaap_ProceedsFromCollectionOfNotesReceivable",
+        "us-gaap_ProceedsFromCollectionOfLoansReceivable",
         "us-gaap_IncreaseDecreaseInNotesReceivables",
+        "us-gaap_ProceedsFromSaleAndCollectionOfReceivables",
+        "us-gaap_ProceedsFromSaleAndMaturityOfAvailableForSaleSecurities",
+    ],
+    "Purchase of Held to Maturity Securities": [
+        "us-gaap_PaymentsForProceedsFromHeldtomaturitySecuritiesShortterm"
     ],
     "Purchase of Property, Plant, and Equipment": [
         "us-gaap_PaymentsToAcquirePropertyPlantAndEquipment",
         "us-gaap_PaymentsToAcquireProductiveAssets",
         "us-gaap_PaymentsForProceedsFromProductiveAssets",
         "nvda_PurchasesOfPropertyAndEquipmentAndIntangibleAssets",
+        "us-gaap_PaymentsToAcquireOtherPropertyPlantAndEquipment",
     ],
+    "Purchase of Software": ["us-gaap_PaymentsToAcquireSoftware"],
     "Purchase of Digital Assets": ["tsla_PurchaseOfDigitalAssets"],
+    "Purchase of Loans": ["us-gaap_PaymentsToAcquireLoansReceivable"],
     "Purchase of Intangible Assets": [
         "tsla_PaymentsToAcquireOtherIndefiniteLivedIntangibleAssets",
-        "us-gaap_PaymentsToAcquireIntangibleAssets",
-    ],
-    "Proceeds from Sale of Property, Plant, and Equipment": [
-        "amzn_ProceedsFromRebatesOnPurchasesOfProductiveAssets",
         "amzn_ProceedsFromPropertyPlantAndEquipmentSalesAndIncentives",
     ],
     "Proceeds from Sale of Long Live Assets": [
-        "nvda_Proceedsfromsaleoflonglivedassetsandinvestments"
+        "nvda_Proceedsfromsaleoflonglivedassetsandinvestments",
+        "us-gaap_ProceedsFromSalesOfBusinessAffiliateAndProductiveAssets",
+        "us-gaap_ProceedsFromSaleOfProductiveAssets",
+    ],
+    "Proceeds from Sale of Property, Plant, and Equipment": [
+        "us-gaap_ProceedsFromSaleOfPropertyPlantAndEquipment",
+        "us-gaap_ProceedsFromSaleOfOtherPropertyPlantAndEquipment",
     ],
     "Proceeds of Sale of Digital Assets": ["tsla_ProceedsFromSalesOfDigitalAssets"],
+    "Proceeds from Divesitures": ["us-gaap_ProceedsFromDivestitureOfBusinesses"],
+    "Proceeds from Sale of Equtiy Method Investments": [
+        "us-gaap_ProceedsFromSaleOfEquityMethodInvestments"
+    ],
     "Payments for Acquisitions": [
         "us-gaap_PaymentsToAcquireBusinessesNetOfCashAcquired",
         "msft_AcquisitionsNetOfCashAcquiredAndPurchasesOfIntangibleAndOtherAssets",
         "amzn_PaymentsToAcquireBusinessesNetOfCashAcquiredAndOther",
         "us-gaap_PaymentsToAcquireBusinessesAndInterestInAffiliates",
         "goog_AcquisitionsNetOfCashAcquiredAndPurchasesOfIntangibleAndOtherAssets",
+        "us-gaap_PaymentsToAcquireBusinessesGross",
+        "us-gaap_NoncashOrPartNoncashAcquisitionNetNonmonetaryAssetsAcquiredLiabilitiesAssumed1",
     ],
     "Payments for Solar Energy Systems": [
         "tsla_PaymentsForSolarEnergySystemsNetOfSales"
     ],
-    "Changes in Restricted Cash": ["us-gaap_IncreaseDecreaseInRestrictedCash"],
+    "Changes in Restricted Cash": [
+        "us-gaap_IncreaseDecreaseInRestrictedCash",
+        "us-gaap_RestrictedCashAndCashEquivalents",
+    ],
     "Receipts from Government Grants": ["tsla_GovernmentGrantReceipts"],
     "Other Acquisitions and Investments": ["us-gaap_PaymentsToAcquireOtherInvestments"],
     "Other Investing Activities": [
         "us-gaap_PaymentsForProceedsFromOtherInvestingActivities",
         "us-gaap_ProceedsFromSaleAndMaturityOfOtherInvestments",
+        "us-gaap_ProceedsFromMaturitiesPrepaymentsAndCallsOfHeldToMaturitySecurities",
     ],
     "Securities Lending Collateral": [
         "us-gaap_IncreaseDecreaseInCollateralHeldUnderSecuritiesLending"
@@ -235,6 +319,7 @@ cash_mapping = {
     "Payment of Dividends": [
         "us-gaap_PaymentsOfDividendsCommonStock",
         "us-gaap_PaymentsOfDividends",
+        "us-gaap_PaymentsOfOrdinaryDividends",
     ],
     "Tax Withholding Related to Stock Based Compensation": [
         "us-gaap_PaymentsRelatedToTaxWithholdingForShareBasedCompensation",
@@ -265,6 +350,8 @@ cash_mapping = {
         "us-gaap_ProceedsFromRepaymentsOfShortTermDebt",
         "us-gaap_ProceedsFromRepaymentsOfShortTermDebtMaturingInThreeMonthsOrLess",
         "amzn_ProceedsFromShortTermDebtAndOtherFinancingActivities",
+        "us-gaap_ProceedsFromShortTermDebtMaturingInMoreThanThreeMonths",
+        "us-gaap_ProceedsFromShortTermDebt",
     ],
     "Proceeds from Exercise of Stock Options": [
         "us-gaap_ProceedsFromStockOptionsExercised",
@@ -273,7 +360,15 @@ cash_mapping = {
     "Proceeds from Private Placement": [
         "us-gaap_ProceedsFromIssuanceOfPrivatePlacement"
     ],
-    "Proceeds from Minority Interest": ["us-gaap_ProceedsFromMinorityShareholders"],
+    "Proceeds from Minority Interest": [
+        "us-gaap_ProceedsFromMinorityShareholders",
+        "us-gaap_ProceedsFromPaymentsToMinorityShareholders",
+        "us-gaap_NetIncomeLossAttributableToNoncontrollingInterest",
+    ],
+    "Proceeds From Repayment of Bank Overdrafts": [
+        "us-gaap_ProceedsFromRepaymentsOfBankOverdrafts"
+    ],
+    "Proceeds from sale of Treasury Stock": ["us-gaap_ProceedsFromSaleOfTreasuryStock"],
     "Repayment of Long Term Debt": [
         "us-gaap_RepaymentsOfLongTermDebt",
         "us-gaap_RepaymentsOfDebtMaturingInMoreThanThreeMonths",
@@ -297,19 +392,34 @@ cash_mapping = {
         "us-gaap_RepaymentsOfLongTermCapitalLeaseObligations",
         "nvda_PaymentsForFinancedPropertyPlantAndEquipmentFinancingActivities",
     ],
+    "Payments to Acquire Equity Securities": [
+        "us-gaap_PaymentsToAcquireAvailableForSaleSecuritiesEquity"
+    ],
+    "Payments to Acquire Equity Method Investments": [
+        "us-gaap_PaymentsToAcquireEquityMethodInvestments"
+    ],
     "Payments for Contingent Consideration Liabilities": [
-        "us-gaap_PaymentForContingentConsiderationLiabilityFinancingActivities"
+        "us-gaap_PaymentForContingentConsiderationLiabilityFinancingActivities",
+        "us-gaap_PaymentsForPreviousAcquisition",
+    ],
+    "Payments for Repurchase of Redeemable Noncontrolling Interest": [
+        "us-gaap_PaymentsForRepurchaseOfRedeemableNoncontrollingInterest"
     ],
     "Payments for Hedges": [
         "us-gaap_PaymentsForHedgeFinancingActivities",
         "us-gaap_PaymentsForProceedsFromHedgeFinancingActivities",
+        "us-gaap_PaymentsForHedgeInvestingActivities",
     ],
     "Proceeds from Hedges": ["us-gaap_ProceedsFromHedgeFinancingActivities"],
+    "Payment to Settle Derivative Instruments": [
+        "us-gaap_PaymentsForDerivativeInstrumentFinancingActivities"
+    ],
     "Debt Issuance Costs": [
         "us-gaap_PaymentsOfDebtIssuanceCosts",
         "us-gaap_PaymentOfFinancingAndStockIssuanceCosts",
         "us-gaap_ProceedsFromRepaymentsOfSecuredDebt",
         "us-gaap_ProceedsFromSecuredNotesPayable",
+        "us-gaap_ProceedsFromRepaymentsOfOtherDebt",
     ],
     "Stock Issuance Costs": ["us-gaap_PaymentsOfStockIssuanceCosts"],
     "Payments of Financing Costs": ["us-gaap_PaymentsOfFinancingCosts"],
@@ -317,13 +427,16 @@ cash_mapping = {
         "us-gaap_ProceedsFromPaymentsForOtherFinancingActivities"
     ],
     "Distribution to Noncontrolling Interest": [
-        "us-gaap_PaymentsToMinorityShareholders"
+        "us-gaap_PaymentsToMinorityShareholders",
+        "us-gaap_PaymentsOfDividendsMinorityInterest",
     ],
     "Payment of Debt Restructuring Costs": ["us-gaap_PaymentsOfDebtRestructuringCosts"],
     "Borrowings Under Revolving Credit Facility": ["us-gaap_ProceedsFromLinesOfCredit"],
     "Repayments of Short Term Debt": [
         "us-gaap_RepaymentsOfLinesOfCredit",
         "amzn_RepaymentsOfShortTermDebtAndOtherFinancingActivities",
+        "us-gaap_RepaymentsOfShortTermDebtMaturingInMoreThanThreeMonths",
+        "us-gaap_RepaymentsOfShortTermDebt",
     ],
     "Net Cash Used in Financing Activities": [
         "us-gaap_NetCashProvidedByUsedInFinancingActivities",
@@ -345,6 +458,9 @@ cash_mapping = {
         "us-gaap_CashAndCashEquivalentsAtCarryingValue",
         "us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsIncludingDisposalGroupAndDiscontinuedOperations",
     ],
+    "Cash and Cash Eqivalents at Begining of Year Including Discontinued Operations": [
+        "us-gaap_CashAndCashEquivalentsAtCarryingValueIncludingDiscontinuedOperations"
+    ],
     "Cash Paid for Interest": [
         "us-gaap_InterestPaidNet",
         "us-gaap_InterestPaid",
@@ -360,6 +476,8 @@ cash_mapping = {
     "Issuance of Common Stock Attributable to Acquisitions": [
         "us-gaap_StockIssued1",
         "us-gaap_BusinessCombinationConsiderationTransferredEquityInterestsIssuedAndIssuable",
+        "us-gaap_OtherSignificantNoncashTransactionValueOfConsiderationGiven1",
+        "us-gaap_StockIssuedDuringPeriodValueAcquisitions",
     ],
     "Assets Acquired Under Operating Lease": [
         "us-gaap_RightOfUseAssetObtainedInExchangeForOperatingLeaseLiability"
@@ -368,6 +486,7 @@ cash_mapping = {
         "us-gaap_IncomeTaxesPaidNet",
         "us-gaap_IncomeTaxesPaid",
     ],
+    "Conversion of Debt": ["us-gaap_DebtConversionConvertedInstrumentAmount1"],
     # Non Cash Investing and Financing Activities
     "NON CASH INVESTING AND FINANCING ACTIVITIES": [
         "us-gaap_OtherNoncashInvestingAndFinancingItemsAbstract",
@@ -381,15 +500,20 @@ cash_mapping = {
         "us-gaap_UnrealizedGainLossOnSecurities",
         "us-gaap_UnrealizedGainLossOnDerivatives",
     ],
+    "Loss on equity investments": ["us-gaap_EquitySecuritiesFvNiRealizedGainLoss"],
     "PPE Acquired Under Finance Lease": [
         "us-gaap_CapitalLeaseObligationsIncurred",
         "us-gaap_RightOfUseAssetObtainedInExchangeForFinanceLeaseLiability",
         "us-gaap_NoncashOrPartNoncashAcquisitionFixedAssetsAcquired1",
         "us-gaap_NoncashOrPartNoncashAcquisitionValueOfAssetsAcquired1",
+        "us-gaap_NoncashOrPartNoncashAcquisitionDebtAssumed1",
     ],
     "PPE Acquired Under Build to Suit Arrangement": [
         "amzn_PropertyandEquipmentObtainedinExchangeforFinancingObligations",
         "amzn_BuildToSuitLeaseObligationsIncurred",
     ],
     "Assets Acquired By Assumption of Liabilities": ["us-gaap_LiabilitiesAssumed1"],
+    "Cash Provided by investing activities Discontinued Operations": [
+        "us-gaap_CashProvidedByUsedInInvestingActivitiesDiscontinuedOperations"
+    ],
 }

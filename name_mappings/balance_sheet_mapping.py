@@ -29,6 +29,7 @@ balance_mapping = {
     "Equity Method Investments": [
         "us-gaap_EquityMethodInvestments",
         "us-gaap_EquitySecuritiesWithoutReadilyDeterminableFairValueAmount",
+        "us-gaap_InvestmentsInAffiliatesSubsidiariesAssociatesAndJointVentures",
     ],
     "Loans and Finance Receivables": [
         "us-gaap_NotesReceivableNet",
@@ -50,6 +51,7 @@ balance_mapping = {
         "us-gaap_ReceivablesNetCurrent",
         "us-gaap_AccountsReceivableNetCurrent",
         "us-gaap_AccountsAndOtherReceivablesNetCurrent",
+        "us-gaap_AccountsNotesAndLoansReceivableNetCurrent",
     ],
     "Other Receivables": [
         "us-gaap_PremiumsAndOtherReceivablesNet",
@@ -63,6 +65,7 @@ balance_mapping = {
         "us-gaap_InventoryPartsAndComponentsNetOfReserves",
         "us-gaap_InventoryRawMaterialsAndSuppliesNetOfReserves",
         "us-gaap_InventoryRawMaterialsAndSupplies",
+        "us-gaap_OtherInventorySupplies",
     ],
     "Inventory Work in Progress": [
         "us-gaap_InventoryWorkInProcessNetOfReserves",
@@ -72,6 +75,10 @@ balance_mapping = {
         "us-gaap_InventoryFinishedGoodsNetOfReserves",
         "us-gaap_InventoryFinishedGoods",
     ],
+    "Finished Goods and Work in Progress Inventory": [
+        "us-gaap_InventoryFinishedGoodsAndWorkInProcess"
+    ],
+    "Chemicals Inventory": ["us-gaap_EnergyRelatedInventoryChemicals"],
     "Prepaid Expenses": [
         "us-gaap_PrepaidExpenseCurrent",
         "us-gaap_NontradeReceivablesCurrent",
@@ -87,8 +94,11 @@ balance_mapping = {
     ],
     "Solar Energy Systems": ["tsla_LeasedAssetsNet"],
     "Other Current Assets": ["us-gaap_OtherAssetsCurrent"],
-    "Assets Help for Sale": [
-        "us-gaap_AssetsHeldForSaleNotPartOfDisposalGroupCurrentOther"
+    "Assets Held for Sale": [
+        "us-gaap_AssetsHeldForSaleNotPartOfDisposalGroupCurrentOther",
+        "us-gaap_DisposalGroupIncludingDiscontinuedOperationPropertyPlantAndEquipment",
+        "us-gaap_DisposalGroupIncludingDiscontinuedOperationPropertyPlantAndEquipmentNoncurrent",
+        "us-gaap_DisposalGroupIncludingDiscontinuedOperationLongLivedAssetsNoncurrent",
     ],
     "Current Assets of Discontinued Operations": [
         "us-gaap_AssetsOfDisposalGroupIncludingDiscontinuedOperationCurrent"
@@ -108,6 +118,15 @@ balance_mapping = {
         "us-gaap_PropertyPlantAndEquipmentNet",
         "us-gaap_PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetAfterAccumulatedDepreciationAndAmortization",
     ],
+    "Property, Plant, and Equipment Gross": [
+        "us-gaap_PropertyPlantAndEquipmentGross",
+        "us-gaap_PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetBeforeAccumulatedDepreciationAndAmortization",
+    ],
+    "Accumulated Depreciation PPE": [
+        "us-gaap_AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment",
+        "us-gaap_PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetAccumulatedDepreciationAndAmortization",
+    ],
+    "Noncurrent Assets": ["us-gaap_NoncurrentAssets"],
     "Digital Assets Net Noncurrent": ["tsla_DigitalAssetsNetNonCurrent"],
     "Intangible Assets": [
         "us-gaap_IntangibleAssetsNetExcludingGoodwill",
@@ -121,7 +140,9 @@ balance_mapping = {
     ],
     "Goodwill": ["us-gaap_Goodwill"],
     "Long Term Accounts Notes and Loans Receivable": [
-        "us-gaap_LongTermAccountsNotesAndLoansReceivableNetNoncurrent"
+        "us-gaap_LongTermAccountsNotesAndLoansReceivableNetNoncurrent",
+        "us-gaap_AccountsReceivableExcludingAccruedInterestAfterAllowanceForCreditLossNoncurrent",
+        "us-gaap_AccountsReceivableNetNoncurrent",
     ],
     "Other Long Term Assets": [
         "us-gaap_OtherAssetsNoncurrent",
@@ -147,6 +168,10 @@ balance_mapping = {
         "amzn_AccruedLiabilitiesAndOtherCurrent",
         "tsla_AccruedAndOtherCurrentLiabilities",
     ],
+    "Other Accrued Expenses": [
+        "us-gaap_OtherAccruedLiabilitiesCurrent",
+        "us-gaap_AccrualForTaxesOtherThanIncomeTaxesCurrent",
+    ],
     "Unpaid Losses and Loss Adjustment Expenses": [
         "us-gaap_LiabilityForClaimsAndClaimsAdjustmentExpensePropertyCasualtyLiability",
         "us-gaap_LiabilityForClaimsAndClaimsAdjustmentExpense",
@@ -170,11 +195,13 @@ balance_mapping = {
         "us-gaap_DeferredRevenueCurrent",
     ],
     "Resale Value Gaurantee Liability": ["tsla_ResaleValueGuaranteesCurrentPortion"],
-    "Customer Deposits": [
+    "Deposits": [
         "tsla_CustomerDepositsLiabilitiesCurrent",
         "us-gaap_CustomerDepositsCurrent",
         "us-gaap_CustomerAdvancesCurrent",
         "us-gaap_DepositsAssetsCurrent",
+        "us-gaap_InterestBearingDepositsInBanks",
+        "us-gaap_TimeDepositsAtCarryingValue",
     ],
     "Deferred Tax Assets Liabilities Net Current": [
         "us-gaap_DeferredTaxAssetsLiabilitiesNetCurrent",
@@ -187,6 +214,7 @@ balance_mapping = {
         "us-gaap_AccruedIncomeTaxesCurrent",
         "us-gaap_TaxesPayableCurrent",
     ],
+    "Sales Tax Payable": ["us-gaap_SalesAndExciseTaxPayableCurrent"],
     "Operating Lease Liability": ["us-gaap_OperatingLeaseLiabilityCurrent"],
     "Other Current Liabilities": ["us-gaap_OtherLiabilitiesCurrent"],
     "Commercial Paper": ["us-gaap_CommercialPaper"],
@@ -208,6 +236,7 @@ balance_mapping = {
     "Long Term Debt and Capital Lease Obligations": [
         "us-gaap_LongTermDebtAndCapitalLeaseObligations",
         "us-gaap_CapitalLeaseObligationsNoncurrent",
+        "us-gaap_LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities",
     ],
     "Long Term Debt and Finance Leases": [
         "tsla_LongTermDebtAndFinanceLeasesNoncurrent"
@@ -215,6 +244,7 @@ balance_mapping = {
     "Deferred Revenue Noncurrent": [
         "us-gaap_DeferredRevenueNoncurrent",
         "us-gaap_ContractWithCustomerLiabilityNoncurrent",
+        "us-gaap_DeferredRevenueAndCreditsNoncurrent",
     ],
     "Long Term Lease Liability": [
         "us-gaap_OperatingLeaseLiabilityNoncurrent",
@@ -283,8 +313,9 @@ balance_mapping = {
     "Common Shares Authorized": ["us-gaap_CommonStockSharesAuthorized"],
     "Common Shares Issued": ["us-gaap_CommonStockSharesIssued"],
     "Common Shares Outstanding": ["us-gaap_CommonStockSharesOutstanding"],
-    "Common Stock Held in Employee Trust": [
-        "us-gaap_CommonStockSharesHeldInEmployeeTrust"
+    "Common Stock Held in Trust": [
+        "us-gaap_CommonStockSharesHeldInEmployeeTrust",
+        "us-gaap_CommonStockHeldInTrust",
     ],
     "Preferred Shares Authorized": ["us-gaap_PreferredStockSharesAuthorized"],
     "Preferred Stock Issued": ["us-gaap_PreferredStockSharesIssued"],

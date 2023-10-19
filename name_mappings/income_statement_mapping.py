@@ -7,12 +7,14 @@ income_mapping = {
         "us-gaap_SalesRevenueNet",
         "us-gaap_Revenues",
         "xom_TotalRevenuesAndOtherIncome",
+        "us-gaap_RevenueFromContractWithCustomerIncludingAssessedTax",
     ],
     "Goods Revenue": ["us-gaap_SalesRevenueGoodsNet"],
     "Service Revenue": [
         "msft_SalesRevenueServicesAndOtherNet",
         "us-gaap_SalesRevenueServicesNet",
     ],
+    "Oil and Gas Revenue": ["us-gaap_OilAndGasRevenue"],
     "Investment and Derivative Revenue": [
         "us-gaap_NonoperatingGainsLosses",
     ],
@@ -44,6 +46,7 @@ income_mapping = {
         "us-gaap_CostOfGoodsSold",
     ],
     "Cost of Services": ["msft_CostOfServicesAndOther"],
+    "Oil and Gas Cost": ["us-gaap_CostOfPurchasedOilAndGas"],
     "Fulfillment Expense": ["amzn_FulfillmentExpense"],
     "Tech and Content Expense": ["amzn_TechnologyAndContentExpense"],
     "Marketing Expense": [
@@ -87,12 +90,17 @@ income_mapping = {
         "us-gaap_OtherFinancialServicesCosts",
     ],
     "Medical Costs": ["us-gaap_PolicyholderBenefitsAndClaimsIncurredHealthCare"],
-    "Operating Expenses": ["us-gaap_OperatingExpenses", "us-gaap_CostsAndExpenses"],
+    "Operating Expenses": [
+        "us-gaap_OperatingExpenses",
+        "us-gaap_CostsAndExpenses",
+        "us-gaap_OperatingCostsAndExpenses",
+    ],
     "Operating Income": ["us-gaap_OperatingIncomeLoss"],
     "NON-OPERATING": ["us-gaap_NonoperatingIncomeExpenseAbstract"],
     "Non-Operating Income": ["us-gaap_NonoperatingIncomeExpense"],
     "Interest Expense": [
         "us-gaap_InterestExpense",
+        "us-gaap_InterestExpenseDebt",
     ],
     "Interest Income": [
         "wsm_NetInterestIncomeAndExpense",
@@ -126,7 +134,10 @@ income_mapping = {
         "us-gaap_DepreciationDepletionAndAmortization",
     ],
     "Litigation Settlement Expense": ["us-gaap_LitigationSettlementExpense"],
-    "Other Expense Non-Operating": ["us-gaap_OtherNonoperatingIncomeExpense"],
+    "Other Expense Non-Operating": [
+        "us-gaap_OtherNonoperatingIncomeExpense",
+        "us-gaap_OtherNonoperatingIncome",
+    ],
     "Non Service Pension Expense": [
         "us-gaap_NetPeriodicDefinedBenefitsExpenseReversalOfExpenseExcludingServiceCostComponent"
     ],

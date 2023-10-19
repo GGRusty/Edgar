@@ -75,6 +75,7 @@ cash_mapping = {
     "Pension benefits Expense excess of payments": [
         "us-gaap_PensionAndOtherPostretirementBenefitsExpenseReversalOfExpenseNoncash"
     ],
+    "Cash Payments for Pension Benefits": ["us-gaap_PensionContributions"],
     "Non Cash Pension Expense": ["us-gaap_NoncashContributionExpense"],
     "Gain on sale of Other Assets": [
         "us-gaap_GainLossOnSaleOfOtherAssets",
@@ -85,6 +86,7 @@ cash_mapping = {
         "us-gaap_DebtAndEquitySecuritiesGainLoss",
         "tsla_GainLossOnDigitalAssets",
         "us-gaap_GainLossOnSaleOfEquityInvestments",
+        "us-gaap_ProceedsFromRepurchaseOfEquity",
     ],
     "Gain on sale of Other Investments": ["us-gaap_GainLossOnSaleOfOtherInvestments"],
     "increase in Trading Securities": ["us-gaap_IncreaseDecreaseInTradingSecurities"],
@@ -100,6 +102,7 @@ cash_mapping = {
     ],
     "Impairment of Intangible Assets": [
         "us-gaap_ImpairmentOfIntangibleAssetsExcludingGoodwill"
+        "us-gaap_ImpairmentOfIntangibleAssetsIndefinitelivedExcludingGoodwill"
     ],
     "Non Cash Interest Expense and Other": [
         "tsla_NoncashInterestIncomeExpenseAndOtherOperatingActivities"
@@ -116,6 +119,9 @@ cash_mapping = {
     "Recognition of Deferred Revenue": ["us-gaap_RecognitionOfDeferredRevenue"],
     "Loss On early Extinguishment of Debt": [
         "us-gaap_GainsLossesOnExtinguishmentOfDebt"
+    ],
+    "Decrease in long term receivables": [
+        "us-gaap_IncreaseDecreaseInLongTermReceivablesCurrent"
     ],
     "Fair Value Adjustments for Non-Marketable Securities": [
         "us-gaap_EquitySecuritiesFvNiGainLoss"
@@ -139,12 +145,16 @@ cash_mapping = {
     ],
     "Changes in Other Receivables": ["us-gaap_IncreaseDecreaseInOtherReceivables"],
     "Changes in Inventory": ["us-gaap_IncreaseDecreaseInInventories"],
+    "Changes in Merchandise Inventory": [
+        "us-gaap_IncreaseDecreaseInRetailRelatedInventories"
+    ],
     "Changes in Prepaid Expenses and other assets": [
         "us-gaap_IncreaseDecreaseInPrepaidDeferredExpenseAndOtherAssets",
         "us-gaap_IncreaseDecreaseInOtherOperatingAssets",
         "nvda_PrepaidExpensesAndOtherCurrentAsset",
         "us-gaap_IncreaseDecreaseInPrepaidExpense",
     ],
+    "Decrease in other Deferred Charges": ["us-gaap_IncreaseDecreaseInDeferredCharges"],
     "Changes in Accounts Payable": [
         "us-gaap_IncreaseDecreaseInAccountsPayable",
         "us-gaap_IncreaseDecreaseInAccountsPayableTrade",
@@ -188,11 +198,12 @@ cash_mapping = {
     "Changes in Operating Lease Vehicles": [
         "tsla_IncreaseDecreaseInOperatingLeaseVehicles"
     ],
-    "Changes in Customer Deposits": [
+    "Changes in Deposits": [
         "tsla_IncreaseDecreaseInContractWithCustomerLiabilityCustomerDeposits",
         "us-gaap_IncreaseDecreaseInDeferredRevenueAndCustomerAdvancesAndDeposits",
         "us-gaap_IncreaseDecreaseInDeposits",
         "us-gaap_IncreaseDecreaseInCustomerDeposits",
+        "us-gaap_IncreaseDecreaseInTimeDeposits",
     ],
     "Changes in Other Current Liabilities": [
         "us-gaap_IncreaseDecreaseInOtherOperatingLiabilities",
@@ -211,6 +222,7 @@ cash_mapping = {
     "Changes in Income Taxes Receivable": [
         "us-gaap_IncreaseDecreaseInIncomeTaxesReceivable"
     ],
+    "Changes in Working Capital": ["us-gaap_IncreaseDecreaseInOperatingCapital"],
     "Net Cash Provided by Operating Activities": [
         "us-gaap_NetCashProvidedByUsedInOperatingActivities",
         "us-gaap_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
@@ -277,7 +289,10 @@ cash_mapping = {
         "us-gaap_ProceedsFromSaleOfOtherPropertyPlantAndEquipment",
     ],
     "Proceeds of Sale of Digital Assets": ["tsla_ProceedsFromSalesOfDigitalAssets"],
-    "Proceeds from Divesitures": ["us-gaap_ProceedsFromDivestitureOfBusinesses"],
+    "Proceeds from Divesitures": [
+        "us-gaap_ProceedsFromDivestitureOfBusinesses",
+        "us-gaap_ProceedsFromDivestitureOfBusinessesNetOfCashDivested",
+    ],
     "Proceeds from Sale of Equtiy Method Investments": [
         "us-gaap_ProceedsFromSaleOfEquityMethodInvestments"
     ],
@@ -299,10 +314,12 @@ cash_mapping = {
     ],
     "Receipts from Government Grants": ["tsla_GovernmentGrantReceipts"],
     "Other Acquisitions and Investments": ["us-gaap_PaymentsToAcquireOtherInvestments"],
+    "Cash Acquired in Acquisition": ["us-gaap_CashAcquiredFromAcquisition"],
     "Other Investing Activities": [
         "us-gaap_PaymentsForProceedsFromOtherInvestingActivities",
         "us-gaap_ProceedsFromSaleAndMaturityOfOtherInvestments",
         "us-gaap_ProceedsFromMaturitiesPrepaymentsAndCallsOfHeldToMaturitySecurities",
+        "us-gaap_ProceedsFromSaleOfOtherAssetsInvestingActivities",
     ],
     "Securities Lending Collateral": [
         "us-gaap_IncreaseDecreaseInCollateralHeldUnderSecuritiesLending"
@@ -339,6 +356,7 @@ cash_mapping = {
         "us-gaap_ProceedsFromDebtNetOfIssuanceCosts",
         "us-gaap_ProceedsFromConvertibleDebt",
         "us-gaap_ProceedsFromIssuanceOfDebt",
+        "us-gaap_ProceedsFromIssuanceOfLongTermDebtAndCapitalSecuritiesNet",
     ],
     "Proceeds from Issuance of Common Stock": [
         "us-gaap_ProceedsFromIssuanceOfCommonStock"
@@ -352,6 +370,7 @@ cash_mapping = {
         "amzn_ProceedsFromShortTermDebtAndOtherFinancingActivities",
         "us-gaap_ProceedsFromShortTermDebtMaturingInMoreThanThreeMonths",
         "us-gaap_ProceedsFromShortTermDebt",
+        "us-gaap_ProceedsFromIssuanceOfCommercialPaper",
     ],
     "Proceeds from Exercise of Stock Options": [
         "us-gaap_ProceedsFromStockOptionsExercised",
@@ -386,7 +405,10 @@ cash_mapping = {
         "us-gaap_RepaymentsOfConvertibleDebt",
         "tsla_RepaymentsOfConvertibleAndOtherDebt",
     ],
-    "Repayment of Related Party Debt": ["us-gaap_RepaymentsOfRelatedPartyDebt"],
+    "Repayment of Related Party Debt": [
+        "us-gaap_RepaymentsOfRelatedPartyDebt",
+        "us-gaap_ProceedsFromPaymentsForLongTermLoansForRelatedParties",
+    ],
     "Principal Payments Under Finance Lease": [
         "us-gaap_FinanceLeasePrincipalPayments",
         "us-gaap_RepaymentsOfLongTermCapitalLeaseObligations",
@@ -450,6 +472,9 @@ cash_mapping = {
     "Net Change in Cash and Cash Equivalents": [
         "us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect",
         "us-gaap_CashAndCashEquivalentsPeriodIncreaseDecrease",
+    ],
+    "Net Change in Cash and Cash Equivalents excluding exchange rate effect": [
+        "us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect"
     ],
     # supplemental cash flow information
     "SUPPLEMENTAL INFO": ["us-gaap_SupplementalCashFlowInformationAbstract"],

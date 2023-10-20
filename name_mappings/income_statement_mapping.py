@@ -9,10 +9,16 @@ income_mapping = {
         "xom_TotalRevenuesAndOtherIncome",
         "us-gaap_RevenueFromContractWithCustomerIncludingAssessedTax",
     ],
-    "Goods Revenue": ["us-gaap_SalesRevenueGoodsNet"],
+    "Goods Revenue": [
+        "us-gaap_SalesRevenueGoodsNet",
+        "adbe_ProductRevenue",
+        "adbe_Productrevenue",
+    ],
     "Service Revenue": [
         "msft_SalesRevenueServicesAndOtherNet",
         "us-gaap_SalesRevenueServicesNet",
+        "adbe_ServicesAndOtherRevenue",
+        "adbe_Servicesandsupportrevenue",
     ],
     "Oil and Gas Revenue": ["us-gaap_OilAndGasRevenue"],
     "Investment and Derivative Revenue": [
@@ -24,6 +30,14 @@ income_mapping = {
         "us-gaap_InvestmentIncomeNet",
     ],
     "Derivative Revenue": ["us-gaap_GainLossOnDerivativeInstrumentsNetPretax"],
+    "subscription Revenue": [
+        "us-gaap_RevenueFromEnrollmentAndRegistrationFeesExcludingHospitalityEnterprises",
+        "adbe_SubscriptionRevenues",
+        "adbe_SubscriptionandCirculationRevenue",
+        "us-gaap_SubscriptionRevenue",
+    ],
+    "Gain Loss on Sale of Business": ["us-gaap_GainLossOnSaleOfBusiness"],
+    "Gain Loss on Sale of PPE": ["us-gaap_GainLossOnSaleOfPropertyPlantEquipment"],
     "Other Revenue": [
         "us-gaap_OtherIncome",
         "us-gaap_OtherSalesRevenueNet",
@@ -34,6 +48,7 @@ income_mapping = {
     "Permanent Impairment of Investments": [
         "us-gaap_OtherThanTemporaryImpairmentLossesInvestmentsPortionRecognizedInEarningsNet",
         "us-gaap_ImpairmentOfIntangibleAssetsIndefinitelivedExcludingGoodwill",
+        "us-gaap_ImpairmentOfIntangibleAssetsExcludingGoodwill",
     ],
     # Cost of Revenue
     "COST OF REVENUE": ["us-gaap_CostOfRevenueAbstract"],
@@ -44,8 +59,18 @@ income_mapping = {
     "Cost of Goods Sold": [
         "wsm_CostOfGoodsSoldAndOccupancyExpenses",
         "us-gaap_CostOfGoodsSold",
+        "adbe_CostofProductRevenue",
     ],
-    "Cost of Services": ["msft_CostOfServicesAndOther"],
+    "Cost of Services": [
+        "msft_CostOfServicesAndOther",
+        "adbe_CostOfServicesAndOtherRevenue",
+        "adbe_CostofServicesandSupportRevenue",
+        "us-gaap_CostOfServices",
+    ],
+    "Cost of Subscription Revenue": [
+        "adbe_CostofSubscriptionRevenue",
+        "us-gaap_CostOfGoodsSoldSubscription",
+    ],
     "Oil and Gas Cost": ["us-gaap_CostOfPurchasedOilAndGas"],
     "Fulfillment Expense": ["amzn_FulfillmentExpense"],
     "Tech and Content Expense": ["amzn_TechnologyAndContentExpense"],
@@ -64,7 +89,8 @@ income_mapping = {
     "Professional Fees": ["us-gaap_ProfessionalFees"],
     "Exploration Expense": ["us-gaap_ExplorationExpense"],
     "Goodwill and Intangible Asset Impairment": [
-        "us-gaap_GoodwillAndIntangibleAssetImpairment"
+        "us-gaap_GoodwillAndIntangibleAssetImpairment",
+        "us-gaap_GoodwillImpairmentLoss",
     ],
     "Gross Profit": ["us-gaap_GrossProfit"],
     # Operating Expenses
@@ -75,6 +101,7 @@ income_mapping = {
     "Research and Development": [
         "us-gaap_ResearchAndDevelopmentExpense",
         "us-gaap_ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost",
+        "us-gaap_ResearchAndDevelopmentExpenseSoftwareExcludingAcquiredInProcessCost",
     ],
     "Research and Development in Process": ["us-gaap_ResearchAndDevelopmentInProcess"],
     "Acquired In Process R&D": [
@@ -83,6 +110,7 @@ income_mapping = {
     "SG&A": ["us-gaap_SellingGeneralAndAdministrativeExpense"],
     "Selling and Marketing": ["us-gaap_SellingAndMarketingExpense"],
     "General and Administrative": ["us-gaap_GeneralAndAdministrativeExpense"],
+    "Pre-Opening Expense": ["us-gaap_PreOpeningCosts"],
     "Other Operating Expenses Net": [
         "us-gaap_OtherOperatingIncomeExpenseNet",
         "us-gaap_OtherExpenses",
@@ -109,6 +137,7 @@ income_mapping = {
         "us-gaap_InvestmentIncomeInterest",
         "us-gaap_InvestmentIncomeInterestAndDividend",
         "us-gaap_InterestIncomeExpenseNet",
+        "us-gaap_InterestAndOtherIncome",
     ],
     "Equity Investemnts Income": [
         "us-gaap_IncomeLossFromEquityMethodInvestments",
@@ -137,6 +166,7 @@ income_mapping = {
     "Other Expense Non-Operating": [
         "us-gaap_OtherNonoperatingIncomeExpense",
         "us-gaap_OtherNonoperatingIncome",
+        "us-gaap_OtherNonoperatingExpense",
     ],
     "Non Service Pension Expense": [
         "us-gaap_NetPeriodicDefinedBenefitsExpenseReversalOfExpenseExcludingServiceCostComponent"
@@ -157,10 +187,13 @@ income_mapping = {
     "Net Income Discontinued Operations": [
         "us-gaap_IncomeLossFromDiscontinuedOperationsNetOfTax",
         "us-gaap_DiscontinuedOperationIncomeLossFromDiscontinuedOperationDuringPhaseOutPeriodNetOfTax",
+        "us-gaap_IncomeLossFromDiscontinuedOperationsNetOfTaxAttributableToReportingEntity",
     ],
     "Net Income Attributable to Noncontrolling Interest": [
-        "us-gaap_NetIncomeLossAttributableToNoncontrollingInterest"
+        "us-gaap_NetIncomeLossAttributableToNoncontrollingInterest",
+        "us-gaap_IncomeLossFromContinuingOperationsAttributableToNoncontrollingEntity",
     ],
+    "Net Income Attributable to Parent": ["us-gaap_IncomeLossFromContinuingOperations"],
     "Net income": [
         "us-gaap_NetIncomeLoss",
         "us-gaap_NetIncomeLossAvailableToCommonStockholdersBasic",
@@ -175,6 +208,9 @@ income_mapping = {
         "us-gaap_EarningsPerShareBasic",
         "us-gaap_EarningsPerShareBasicAndDiluted",
     ],  # have to change BRK-B becuase it is using the brk-a eps
+    "EPS Discont. Operations": [
+        "us-gaap_DiscontinuedOperationIncomeLossFromDiscontinuedOperationNetOfTaxPerBasicShare"
+    ],
     "EPS Diluted Cont. Operations": [
         "us-gaap_IncomeLossFromContinuingOperationsPerDilutedShare"
     ],

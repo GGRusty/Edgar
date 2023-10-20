@@ -5,6 +5,7 @@ balance_mapping = {
     "Cash": [
         "us-gaap_CashAndCashEquivalentsAtCarryingValue",
         "us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+        "us-gaap_CashEquivalentsAtCarryingValue",
     ],
     "Restricted Cash": [
         "us-gaap_RestrictedCashCurrent",
@@ -92,6 +93,13 @@ balance_mapping = {
         "us-gaap_DeferredCostsLeasingNetNoncurrent",
         "us-gaap_PropertySubjectToOrAvailableForOperatingLeaseNet",
     ],
+    "Land": ["us-gaap_Land"],
+    "Buildings and Improvements": ["us-gaap_BuildingsAndImprovementsGross"],
+    "Machinery and Equipment": [
+        "us-gaap_MachineryAndEquipmentGross",
+        "us-gaap_FixturesAndEquipmentGross",
+    ],
+    "Construction in Progress": ["us-gaap_ConstructionInProgressGross"],
     "Solar Energy Systems": ["tsla_LeasedAssetsNet"],
     "Other Current Assets": ["us-gaap_OtherAssetsCurrent"],
     "Assets Held for Sale": [
@@ -101,7 +109,8 @@ balance_mapping = {
         "us-gaap_DisposalGroupIncludingDiscontinuedOperationLongLivedAssetsNoncurrent",
     ],
     "Current Assets of Discontinued Operations": [
-        "us-gaap_AssetsOfDisposalGroupIncludingDiscontinuedOperationCurrent"
+        "us-gaap_AssetsOfDisposalGroupIncludingDiscontinuedOperationCurrent",
+        "us-gaap_AssetsOfDisposalGroupIncludingDiscontinuedOperation",
     ],
     "Other Assets": ["us-gaap_OtherAssets"],
     "Total Current Assets": ["us-gaap_AssetsCurrent"],
@@ -131,12 +140,15 @@ balance_mapping = {
     "Intangible Assets": [
         "us-gaap_IntangibleAssetsNetExcludingGoodwill",
         "us-gaap_FiniteLivedIntangibleAssetsNet",
+        "us-gaap_IndefiniteLivedIntangibleAssetsExcludingGoodwill",
+        "us-gaap_OtherIntangibleAssetsNet",
     ],
     "Operating Lease Right of Use Asset": ["us-gaap_OperatingLeaseRightOfUseAsset"],
     "Deferred Income Tax Asset": [
         "us-gaap_DeferredIncomeTaxAssetsNet",
         "us-gaap_DeferredTaxAssetsNetNoncurrent",
         "us-gaap_DeferredTaxAssetsGrossNoncurrent",
+        "us-gaap_DeferredIncomeTaxesAndOtherAssetsNoncurrent",
     ],
     "Goodwill": ["us-gaap_Goodwill"],
     "Long Term Accounts Notes and Loans Receivable": [
@@ -168,6 +180,10 @@ balance_mapping = {
         "amzn_AccruedLiabilitiesAndOtherCurrent",
         "tsla_AccruedAndOtherCurrentLiabilities",
     ],
+    "Accrued Member Rewards": [
+        "us-gaap_CustomerLoyaltyProgramLiabilityCurrent",
+        "us-gaap_CustomerRefundLiabilityCurrent",
+    ],
     "Other Accrued Expenses": [
         "us-gaap_OtherAccruedLiabilitiesCurrent",
         "us-gaap_AccrualForTaxesOtherThanIncomeTaxesCurrent",
@@ -189,10 +205,12 @@ balance_mapping = {
     "Accounts Payable and Accrued Expenses": [
         "us-gaap_AccountsPayableAndAccruedLiabilitiesCurrent"
     ],
+    "Accrued Restructuring Charges": ["us-gaap_RestructuringReserveCurrent"],
     "Deferred Revenue": [
         "us-gaap_ContractWithCustomerLiabilityCurrent",
         "us-gaap_DeferredRevenueAndCreditsCurrent",
         "us-gaap_DeferredRevenueCurrent",
+        "us-gaap_OtherDeferredCreditsCurrent",
     ],
     "Resale Value Gaurantee Liability": ["tsla_ResaleValueGuaranteesCurrentPortion"],
     "Deposits": [
@@ -203,10 +221,10 @@ balance_mapping = {
         "us-gaap_InterestBearingDepositsInBanks",
         "us-gaap_TimeDepositsAtCarryingValue",
     ],
-    "Deferred Tax Assets Liabilities Net Current": [
+    "Deferred Tax Assets Liabilities Current": [
         "us-gaap_DeferredTaxAssetsLiabilitiesNetCurrent",
         "us-gaap_DeferredTaxAssetsNetCurrent",
-        "us-gaap_DeferredIncomeTaxLiabilitiesNet",
+        "us-gaap_DeferredIncomeTaxesAndOtherAssetsCurrent",
     ],
     "Employee Related Liabilities": ["us-gaap_EmployeeRelatedLiabilitiesCurrent"],
     "Dividends Payable Current": ["us-gaap_DividendsPayableCurrent"],
@@ -224,7 +242,8 @@ balance_mapping = {
         "tsla_LongTermDebtAndFinanceLeasesCurrent",
     ],
     "Current Liabilities of Discontinued Operations": [
-        "us-gaap_LiabilitiesOfDisposalGroupIncludingDiscontinuedOperationCurrent"
+        "us-gaap_LiabilitiesOfDisposalGroupIncludingDiscontinuedOperationCurrent",
+        "us-gaap_LiabilitiesOfDisposalGroupIncludingDiscontinuedOperation",
     ],
     "Due to Related Parties Current": ["us-gaap_DueToRelatedPartiesCurrent"],
     "Total Current Liabilities": ["us-gaap_LiabilitiesCurrent"],
@@ -250,9 +269,11 @@ balance_mapping = {
         "us-gaap_OperatingLeaseLiabilityNoncurrent",
         "amzn_LeaseLiabilityNoncurrent",
     ],
-    "Deferred Income Tax Noncurrent": [
+    "Deferred Income Tax Liabilities Noncurrent": [
         "us-gaap_DeferredTaxLiabilitiesNoncurrent",
         "us-gaap_DeferredTaxLiabilitiesGrossNoncurrent",
+        "us-gaap_DeferredIncomeTaxLiabilitiesNet",
+        "us-gaap_DeferredIncomeTaxesAndOtherTaxLiabilitiesNoncurrent",
     ],
     "Other Long Term Liabilities": [
         "us-gaap_OtherLiabilitiesNoncurrent",
@@ -267,6 +288,9 @@ balance_mapping = {
     ],
     "Litigation Reserve": ["us-gaap_LitigationReserveCurrent"],
     "Accrued Income Taxes Noncurrent": ["us-gaap_AccruedIncomeTaxesNoncurrent"],
+    "Accrued Restructuring Charges Noncurrent": [
+        "us-gaap_RestructuringReserveNoncurrent"
+    ],
     "Long Term Debt": ["us-gaap_LongTermDebtNoncurrent", "us-gaap_LongTermDebt"],
     "Convertible Debt Noncurrent": ["us-gaap_ConvertibleDebtNoncurrent"],
     "Noncurrent Liabilities": ["us-gaap_LiabilitiesNoncurrent"],
@@ -279,6 +303,7 @@ balance_mapping = {
         "us-gaap_RestrictedCashAndCashEquivalentsNoncurrent",
         "us-gaap_RestrictedCashAndCashEquivalentsAtCarryingValue",
         "us-gaap_RestrictedCashNoncurrent",
+        "us-gaap_RestrictedCashAndInvestmentsNoncurrent",
     ],
     "Convertable Debt Conversion Obligation": [
         "us-gaap_TemporaryEquityValueExcludingAdditionalPaidInCapital"

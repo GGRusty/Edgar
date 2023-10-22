@@ -1,10 +1,21 @@
 import requests
 import logging
+import json
 import numpy as np
 import pandas as pd
 from lxml import etree
 from bs4 import BeautifulSoup
+from name_mappings import (
+    balance_sheet_mapping,
+    income_statement_mapping,
+    cash_flow_mapping,
+)
+from datetime import datetime
 
+pd.set_option("display.max_rows", 600)
+pd.options.display.float_format = (
+    lambda x: "{:,.0f}".format(x) if int(x) == x else "{:,.2f}".format(x)
+)
 headers = {"User-Agent": "russ@sunriseanalysis.com"}
 
 statement_keys_map = {
@@ -249,3 +260,148 @@ def get_statement_soup(
         soup = BeautifulSoup(statement_response.content, "lxml")
 
     return soup
+
+
+def get_annual_edgar_facts_from_downloaded_json(cik):
+    json_file = f"companyfacts/CIK{cik}.json"
+    with open(json_file, "r") as f:
+        json_data = json.load(f)
+    us_gaap_facts = json_data.get("facts", {}).get("us-gaap", {})
+    full_dataframe = pd.DataFrame()
+    for i, (fact, details) in enumerate(us_gaap_facts.items()):
+        units = details.get("units", {})
+        unit_key = list(units.keys())[0] if units else None
+        if unit_key:
+            data = units[unit_key]
+            temp_df = pd.DataFrame(data)
+
+            if "frame" in temp_df.columns:
+                temp_df = temp_df[temp_df["frame"].notnull()]
+                if not temp_df.empty:
+                    temp_df.loc[:, "fact"] = fact
+
+                full_dataframe = pd.concat([full_dataframe, temp_df])
+    return full_dataframe
+
+
+def process_and_aggregate_annual_data(ticker):
+    cik = get_cik(ticker)
+    frames_to_include = [
+        "CY2007",
+        "CY2008",
+        "CY2009",
+        "CY2010",
+        "CY2011",
+        "CY2012",
+        "CY2013",
+        "CY2014",
+        "CY2015",
+        "CY2016",
+        "CY2017",
+        "CY2018",
+        "CY2019",
+        "CY2020",
+        "CY2021",
+        "CY2022",
+        "CY2023",
+    ]
+    filings_df = get_submission_data_for_ticker(ticker, only_filings_df=True)
+    full_facts = get_annual_edgar_facts_from_downloaded_json(cik)
+    full_facts["end"] = pd.to_datetime(full_facts["end"])
+    full_facts["filed"] = pd.to_datetime(full_facts["filed"])
+    pivot_table = pd.pivot_table(
+        full_facts, index=["end", "frame"], columns=["fact"], values=["val"]
+    )
+
+    # Filter DataFrame based on frames_to_include
+    filtered_df = pivot_table.loc[
+        pivot_table.index.get_level_values(1).isin(frames_to_include)
+    ]
+
+    # Get unique dates
+    unique_dates = filtered_df.index.get_level_values(0).unique()
+
+    # Filter DataFrame again based on unique_dates
+    final_filtered_df = pivot_table.loc[(unique_dates, slice(None)), :].sort_index(
+        level=1, ascending=True
+    )
+    final_filtered_df.columns = final_filtered_df.columns.droplevel(0)
+
+    # Insert additional columns
+    final_filtered_df.insert(
+        0, "Year", final_filtered_df.index.get_level_values(1).str[2:6]
+    )
+    final_filtered_df.insert(
+        1, "Period End", final_filtered_df.index.get_level_values(0)
+    )
+
+    # Group by 'Year' and take the first entry for each group
+    aggregated_df = final_filtered_df.groupby("Year").first()
+
+    # Calculate extended filing dates
+    desired_length = len(aggregated_df.index)
+    filing_dates = filings_df[filings_df["form"] == "10-K"]["filingDate"]
+    filing_dates = pd.to_datetime(filing_dates)
+    average_time_delta = filing_dates.diff().dropna().mean()
+    current_date = filing_dates.min()
+
+    extended_dates = []
+    for _ in range(desired_length - len(filing_dates)):
+        next_date = current_date + average_time_delta
+        extended_dates.append(next_date)
+        current_date = next_date
+
+    # Insert 'Filing Date' column
+    extended_dates_series = pd.Series(extended_dates, name="Filing Date")
+    final_extended_filing_dates = (
+        pd.concat([filing_dates, extended_dates_series])
+        .sort_values()
+        .reset_index(drop=True)
+    )
+    final_extended_filing_dates = final_extended_filing_dates.dt.strftime("%Y-%m-%d")
+    aggregated_df.insert(1, "Filing Date", final_extended_filing_dates.values)
+    aggregated_df["Filing Date"] = pd.to_datetime(aggregated_df["Filing Date"])
+
+    # Convert all column names to strings and drop NaN columns
+    aggregated_df.columns = aggregated_df.columns.map(str)
+    aggregated_df = aggregated_df.dropna(axis=1, how="all")
+
+    return aggregated_df
+
+
+def generate_reverse_mapping_and_rename(df, mapping_dict):
+    reverse_mapping = {}
+    for new_col, old_cols in mapping_dict.items():
+        for old_col in old_cols:
+            suffix = old_col.split("_")[-1].lower()
+            reverse_mapping[suffix] = new_col
+
+    # Rename the columns in a case-insensitive manner
+    new_columns = []
+    for col in df.columns:
+        col_lower = col.lower()
+        if col_lower in reverse_mapping:
+            new_columns.append((reverse_mapping[col_lower], col))
+        else:
+            new_columns.append((col, ""))
+
+    renamed_df = df.copy()
+    renamed_df.columns = pd.MultiIndex.from_tuples(new_columns)
+
+    return renamed_df
+
+
+def get_changed_columns(statement_mapping_dict, aggregated_df):
+    renamed_df = generate_reverse_mapping_and_rename(
+        aggregated_df, statement_mapping_dict
+    )
+    original_columns = set(aggregated_df.columns)
+    new_columns = set([col[0] for col in renamed_df.columns])
+    changed_columns = new_columns - original_columns
+    changed_df = renamed_df.loc[
+        :, [col for col in renamed_df.columns if col[0] in changed_columns]
+    ]
+    changed_df.index.name = None
+    changed_df.columns.names = [None, "Gaap Name"]
+
+    return changed_df

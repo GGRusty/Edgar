@@ -128,15 +128,13 @@ income_mapping = {
     "Non-Operating Income": ["us-gaap_NonoperatingIncomeExpense"],
     "Interest Expense": [
         "us-gaap_InterestExpense",
-        "us-gaap_InterestExpenseDebt",
-    ],
-    "Interest Income": [
-        "wsm_NetInterestIncomeAndExpense",
-        "wsm_NetInterestIncomeExpense",
         "us-gaap_InterestIncomeExpenseNonoperatingNet",
+        "us-gaap_InterestIncomeExpenseNet",
+    ],
+    "Interest Expense Debt": ["us-gaap_InterestExpenseDebt"],
+    "Interest Income": [
         "us-gaap_InvestmentIncomeInterest",
         "us-gaap_InvestmentIncomeInterestAndDividend",
-        "us-gaap_InterestIncomeExpenseNet",
         "us-gaap_InterestAndOtherIncome",
     ],
     "Equity Investemnts Income": [
@@ -180,6 +178,7 @@ income_mapping = {
     "Taxes": ["us-gaap_IncomeTaxExpenseBenefit"],
     "Other Taxes": ["us-gaap_TaxesOther"],
     "Sales Tax": ["us-gaap_ExciseAndSalesTaxes"],
+    "Tax Rate Continuing Operations": ["EffectiveIncomeTaxRateContinuingOperations"],
     "Net Income Continuous Operations": [
         "us-gaap_ProfitLoss",
         "us-gaap_IncomeLossFromContinuingOperationsIncludingPortionAttributableToNoncontrollingInterest",
@@ -194,7 +193,7 @@ income_mapping = {
         "us-gaap_IncomeLossFromContinuingOperationsAttributableToNoncontrollingEntity",
     ],
     "Net Income Attributable to Parent": ["us-gaap_IncomeLossFromContinuingOperations"],
-    "Net income": [
+    "Net Income": [
         "us-gaap_NetIncomeLoss",
         "us-gaap_NetIncomeLossAvailableToCommonStockholdersBasic",
     ],

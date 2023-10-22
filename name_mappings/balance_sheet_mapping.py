@@ -4,9 +4,12 @@ balance_mapping = {
     "CURRENT ASSETS": ["us-gaap_AssetsCurrentAbstract"],
     "Cash": [
         "us-gaap_CashAndCashEquivalentsAtCarryingValue",
-        "us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
         "us-gaap_CashEquivalentsAtCarryingValue",
     ],
+    "Cash and Restricted Cash": [
+        "us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+    ],
+    "Cash and Short Term Investments": ['CashCashEquivalentsAndShortTermInvestments'],
     "Restricted Cash": [
         "us-gaap_RestrictedCashCurrent",
         "us-gaap_RestrictedCashAndInvestmentsCurrent",

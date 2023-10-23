@@ -230,8 +230,8 @@ cash_mapping = {
     "Changes in Operating Lease Liability": [
         "us-gaap_IncreaseDecreaseInOperatingLeaseLiability",
         "wsm_IncreaseDecreaseInOperatingLeaseLiabilities",
-        "us-gaap_OperatingLeasePayments",
     ],
+    "Operating Lease Payments": ["us-gaap_OperatingLeasePayments"],
     "Changes in Operating Lease Vehicles": [
         "tsla_IncreaseDecreaseInOperatingLeaseVehicles"
     ],

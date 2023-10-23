@@ -9,7 +9,7 @@ balance_mapping = {
     "Cash and Restricted Cash": [
         "us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
     ],
-    "Cash and Short Term Investments": ['CashCashEquivalentsAndShortTermInvestments'],
+    "Cash and Short Term Investments": ["CashCashEquivalentsAndShortTermInvestments"],
     "Restricted Cash": [
         "us-gaap_RestrictedCashCurrent",
         "us-gaap_RestrictedCashAndInvestmentsCurrent",
@@ -153,7 +153,7 @@ balance_mapping = {
         "us-gaap_DeferredTaxAssetsGrossNoncurrent",
         "us-gaap_DeferredIncomeTaxesAndOtherAssetsNoncurrent",
     ],
-    "Goodwill": ["us-gaap_Goodwill"],
+    "Goodwill Asset": ["us-gaap_Goodwill"],
     "Long Term Accounts Notes and Loans Receivable": [
         "us-gaap_LongTermAccountsNotesAndLoansReceivableNetNoncurrent",
         "us-gaap_AccountsReceivableExcludingAccruedInterestAfterAllowanceForCreditLossNoncurrent",

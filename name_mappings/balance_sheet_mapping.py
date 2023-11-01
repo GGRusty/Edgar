@@ -88,10 +88,9 @@ balance_mapping = {
         "us-gaap_NontradeReceivablesCurrent",
     ],
     "Prepaid Expenses and Other Current Assets": [
-        "us-gaap_PrepaidExpenseAndOtherAssets",
         "us-gaap_PrepaidExpenseAndOtherAssetsCurrent",
-        "us-gaap_OtherPrepaidExpenseCurrent",
     ],
+    "Other Prepaid Expenses": ["us-gaap_OtherPrepaidExpenseCurrent"],
     "Operating Lease Equipment": [
         "us-gaap_DeferredCostsLeasingNetNoncurrent",
         "us-gaap_PropertySubjectToOrAvailableForOperatingLeaseNet",
@@ -116,6 +115,9 @@ balance_mapping = {
         "us-gaap_AssetsOfDisposalGroupIncludingDiscontinuedOperation",
     ],
     "Other Assets": ["us-gaap_OtherAssets"],
+    "Prepaid Expenses and Other Assets": [
+        "us-gaap_PrepaidExpenseAndOtherAssets",
+    ],
     "Total Current Assets": ["us-gaap_AssetsCurrent"],
     # Long Term Assets
     "Long Term Marketable Securities": [

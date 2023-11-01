@@ -126,10 +126,11 @@ income_mapping = {
     "Operating Income": ["us-gaap_OperatingIncomeLoss"],
     "NON-OPERATING": ["us-gaap_NonoperatingIncomeExpenseAbstract"],
     "Non-Operating Income": ["us-gaap_NonoperatingIncomeExpense"],
-    "Interest Expense": [
-        "us-gaap_InterestExpense",
+    "Interest Expense": ["us-gaap_InterestExpense"],
+    "Interest Expense Net": [
         "us-gaap_InterestIncomeExpenseNonoperatingNet",
         "us-gaap_InterestIncomeExpenseNet",
+        "wsm_NetInterestIncomeAndExpense",
     ],
     "Interest Expense Debt": ["us-gaap_InterestExpenseDebt"],
     "Interest Income": [

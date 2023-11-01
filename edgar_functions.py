@@ -1,11 +1,12 @@
-import os
-import requests
-import logging
 import calendar
+import logging
+import os
+
 import numpy as np
 import pandas as pd
-from lxml import etree
+import requests
 from bs4 import BeautifulSoup
+from lxml import etree
 
 pd.set_option("display.max_rows", 500)
 

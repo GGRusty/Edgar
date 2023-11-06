@@ -1,16 +1,18 @@
-import requests
-import logging
 import json
+import logging
+from datetime import datetime
+
 import numpy as np
 import pandas as pd
-from lxml import etree
+import requests
 from bs4 import BeautifulSoup
+from lxml import etree
+
 from name_mappings import (
     balance_sheet_mapping,
-    income_statement_mapping,
     cash_flow_mapping,
+    income_statement_mapping,
 )
-from datetime import datetime
 
 pd.set_option("display.max_rows", 600)
 pd.options.display.float_format = (
@@ -405,3 +407,40 @@ def get_changed_columns(statement_mapping_dict, aggregated_df):
     changed_df.columns.names = [None, "Gaap Name"]
 
     return changed_df
+
+
+def combine_or_add_columns(df, cols, add_instead=False, replace_zero=False):
+    if not cols:
+        return None
+
+    primary_col = None
+    for col in cols:
+        if col in df.columns:
+            primary_col = df[col]
+            break
+
+    if primary_col is None:
+        return None
+
+    if len(cols) == 1:
+        return primary_col
+
+    for col in cols[1:]:
+        if col in df.columns:
+            # Skip if the column contains all NaN values
+            if df[col].isna().all():
+                continue
+
+            if add_instead:
+                primary_col = primary_col.add(df[col], fill_value=0).combine_first(
+                    primary_col.combine_first(df[col])
+                )
+            else:
+                if replace_zero:
+                    primary_col = primary_col.mask(primary_col == 0).combine_first(
+                        df[col]
+                    )
+                else:
+                    primary_col = primary_col.combine_first(df[col])
+
+    return primary_col

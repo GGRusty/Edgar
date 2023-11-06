@@ -12,7 +12,7 @@ cash_mapping = {
         "us-gaap_IncomeLossFromContinuingOperationsIncludingPortionAttributableToNoncontrollingInterest",
         "us-gaap_NetIncomeLossAvailableToCommonStockholdersBasic",
     ],
-    "Depreciation": [
+    "Depreciation on Assets": [
         "us-gaap_Depreciation",
         "goog_DepreciationAndImpairmentOnDispositionOfPropertyAndEquipment",
     ],

@@ -89,14 +89,15 @@ def get_cik(ticker, headers=headers):
         ValueError: If ticker is not a string.
     """
     ticker = ticker.upper().replace(".", "-")
-    headers = headers
     tickers_json = requests.get(
         "https://www.sec.gov/files/company_tickers.json", headers=headers
-    )
-    cik_df = pd.DataFrame.from_dict(tickers_json.json(), orient="index")
-    cik_df["cik_str"] = cik_df["cik_str"].astype(str).str.zfill(10)
-    cik = cik_df[cik_df["ticker"] == ticker]["cik_str"].values[0]
-    return cik
+    ).json()
+
+    for company in tickers_json.values():
+        if company["ticker"] == ticker:
+            cik = str(company["cik_str"]).zfill(10)
+            return cik
+    raise ValueError(f"Ticker {ticker} not found")
 
 
 def get_submission_data_for_ticker(ticker, headers=headers, only_filings_df=False):
